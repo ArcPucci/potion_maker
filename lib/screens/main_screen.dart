@@ -14,25 +14,11 @@ class MainScreen extends StatelessWidget {
           Positioned.fill(
             child: Image.asset('assets/png/main_bg.png', fit: BoxFit.cover),
           ),
-          Positioned(
-            top: 34.h,
-            right: 333.w,
-            child: Image.asset(
-              'assets/png/grandfather_picture.png',
-              width: 101.r,
-              height: 142.r,
-              fit: BoxFit.fill,
-            ),
-          ),
+          Positioned(top: 34.h, right: 333.w, child: MagicAnimated()),
           Positioned(
             left: 327.w,
             bottom: -9.h,
-            child: Image.asset(
-              'assets/png/woman.png',
-              width: 133.r,
-              height: 311.r,
-              fit: BoxFit.fill,
-            ),
+            child: AnimatedWoman(),
           ),
           Positioned(
             left: 237.w,
@@ -40,12 +26,7 @@ class MainScreen extends StatelessWidget {
             child: Stack(
               alignment: Alignment.center,
               children: [
-                Image.asset(
-                  'assets/png/potion.png',
-                  width: 114.r,
-                  height: 178.r,
-                  fit: BoxFit.fill,
-                ),
+                AnimatedPotion(),
                 Positioned(
                   bottom: 27.r,
                   child: LabeledButton(

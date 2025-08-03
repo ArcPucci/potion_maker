@@ -59,15 +59,29 @@ class BudgetBox extends StatelessWidget {
           ),
           Positioned(
             right: 0,
-            child: Image.asset(
-              'assets/png/add.png',
-              width: 20.r,
-              height: 20.r,
-              fit: BoxFit.fill,
+            child: GestureDetector(
+              onTap: () => showShopDialog(context),
+              child: Image.asset(
+                'assets/png/add.png',
+                width: 20.r,
+                height: 20.r,
+                fit: BoxFit.fill,
+              ),
             ),
           ),
         ],
       ),
+    );
+  }
+
+  void showShopDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      useRootNavigator: false,
+      barrierColor: Colors.black.withValues(alpha: 0.16),
+      builder: (BuildContext context) {
+        return CoinsShopDialog();
+      },
     );
   }
 }
