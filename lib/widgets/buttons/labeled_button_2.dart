@@ -1,24 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:potion_maker/widgets/widgets.dart';
 
 import '../../utils/utils.dart';
+import '../widgets.dart';
 
-class LabeledButton extends StatelessWidget {
-  const LabeledButton({
-    super.key,
-    required this.label,
-    this.onTap,
-    this.textStyle,
-    this.width,
-    this.height,
-  });
+class LabeledButton2 extends StatelessWidget {
+  const LabeledButton2({super.key, this.onTap, required this.label});
 
-  final double? width;
-  final double? height;
   final String label;
   final VoidCallback? onTap;
-  final TextStyle? textStyle;
 
   @override
   Widget build(BuildContext context) {
@@ -28,15 +18,15 @@ class LabeledButton extends StatelessWidget {
         alignment: Alignment.center,
         children: [
           Image.asset(
-            'assets/png/buttons/button1.png',
-            width: width ?? 120.r,
-            height: height ?? 42.r,
+            'assets/png/buttons/button2.png',
+            width: 72.r,
+            height: 54.r,
             fit: BoxFit.fill,
           ),
           CustomBorderedText(
             text: label,
             strokeWidth: 1.9.sp,
-            textStyle: textStyle ?? AppTextStyles.ls24,
+            textStyle: AppTextStyles.ls18,
             strokeColor: AppTheme.darkOrange1,
           ),
         ],

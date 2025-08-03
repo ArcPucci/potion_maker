@@ -6,6 +6,6 @@ class GameApplication extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: WelcomeScreen());
+    return MaterialApp(home: MainScreen());
   }
 }

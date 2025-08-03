@@ -5,6 +5,7 @@ import 'package:potion_maker/utils/utils.dart';
 class AppTextStyles {
   static const _lo = 'LilitaOne';
   static const _ls = 'LondrinaSolid';
+  static const _pp = 'Poppins';
 
   static final TextStyle lo11 = TextStyle(
     fontFamily: _lo,
@@ -13,11 +14,58 @@ class AppTextStyles {
     color: AppTheme.black1.withValues(alpha: 0.8),
   );
 
-  static final TextStyle ls9 = TextStyle(
+  static final TextStyle ls16 = TextStyle(
+    fontFamily: _ls,
+    fontSize: 16.r,
+    fontWeight: FontWeight.w400,
+    letterSpacing: 2,
+    color: Colors.white,
+  );
+
+  static final TextStyle ls18 = TextStyle(
+    fontFamily: _ls,
+    fontSize: 18.r,
+    fontWeight: FontWeight.w400,
+    letterSpacing: 2,
+    color: Colors.white,
+  );
+
+  static final TextStyle ls20 = TextStyle(
+    fontFamily: _ls,
+    fontSize: 20.r,
+    fontWeight: FontWeight.w400,
+    letterSpacing: 2,
+    color: Colors.white,
+  );
+
+  static final TextStyle ls24 = TextStyle(
     fontFamily: _ls,
     fontSize: 24.r,
     fontWeight: FontWeight.w400,
-    letterSpacing: 0.09,
+    letterSpacing: 2,
     color: Colors.white,
+  );
+
+  static final TextStyle ls36 = TextStyle(
+    fontFamily: _ls,
+    fontSize: 36.r,
+    fontWeight: FontWeight.w400,
+    letterSpacing: 2,
+    color: Colors.white,
+    shadows: [
+      BoxShadow(
+        offset: Offset(0, 2),
+        blurRadius: 4,
+        color: Colors.black.withValues(alpha: 0.25),
+      ),
+    ],
+  );
+
+  static final TextStyle pp10_600 = TextStyle(
+    fontFamily: _pp,
+    fontSize: 10.r,
+    fontWeight: FontWeight.w600,
+    letterSpacing: 1.9,
+    color: Colors.black,
   );
 }
