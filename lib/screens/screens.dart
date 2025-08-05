@@ -1,2 +1,3 @@
 export 'welcome_screen.dart';
 export 'main_screen.dart';
+export 'wheel_game_screen.dart';

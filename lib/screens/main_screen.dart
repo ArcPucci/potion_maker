@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:potion_maker/utils/utils.dart';
 import 'package:potion_maker/widgets/widgets.dart';
 
@@ -77,35 +78,36 @@ class MainScreen extends StatelessWidget {
           Positioned(
             top: 96.h,
             right: 107.w,
-            child: Stack(
-              children: [
-                Image.asset(
-                  'assets/png/wheel.png',
-                  width: 115.r,
-                  height: 150.r,
-                  fit: BoxFit.fill,
-                ),
-                Positioned(
-                  bottom: 37.r,
-                  child: LabeledButton(
-                    label: 'LIBRARY',
-                    textStyle: AppTextStyles.ls16,
+            child: GestureDetector(
+              onTap: () => context.go('/wheel'),
+              child: Stack(
+                children: [
+                  Image.asset(
+                    'assets/png/wheel.png',
+                    width: 115.r,
+                    height: 150.r,
+                    fit: BoxFit.fill,
                   ),
-                ),
-              ],
+                  Positioned(
+                    bottom: 37.r,
+                    child: LabeledButton(
+                      label: 'LIBRARY',
+                      textStyle: AppTextStyles.ls16,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
           Positioned(
             top: 25.h,
             right: 21.w,
-            child: SafeArea(
-              child: Row(
-                children: [
-                  BudgetBox(),
-                  SizedBox(width: 10.w),
-                  LabeledButton2(label: 'MENU'),
-                ],
-              ),
+            child: Row(
+              children: [
+                BudgetBox(),
+                SizedBox(width: 10.w),
+                MenuButton(),
+              ],
             ),
           ),
         ],

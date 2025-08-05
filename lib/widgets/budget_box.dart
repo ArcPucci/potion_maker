@@ -5,7 +5,10 @@ import 'package:potion_maker/widgets/widgets.dart';
 import '../utils/utils.dart';
 
 class BudgetBox extends StatelessWidget {
-  const BudgetBox({super.key});
+  const BudgetBox({super.key, this.hasPlus = true, this.budget});
+
+  final bool hasPlus;
+  final int? budget;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +44,7 @@ class BudgetBox extends StatelessWidget {
             child: FittedBox(
               fit: BoxFit.scaleDown,
               child: CustomBorderedText(
-                text: '1000',
+                text: budget?.toString() ?? '1000',
                 strokeWidth: 1.9.sp,
                 textStyle: AppTextStyles.ls18,
                 strokeColor: AppTheme.darkOrange1,
@@ -57,18 +60,19 @@ class BudgetBox extends StatelessWidget {
               fit: BoxFit.fill,
             ),
           ),
-          Positioned(
-            right: 0,
-            child: GestureDetector(
-              onTap: () => showShopDialog(context),
-              child: Image.asset(
-                'assets/png/add.png',
-                width: 20.r,
-                height: 20.r,
-                fit: BoxFit.fill,
+          if (hasPlus)
+            Positioned(
+              right: 0,
+              child: GestureDetector(
+                onTap: () => showShopDialog(context),
+                child: Image.asset(
+                  'assets/png/add.png',
+                  width: 20.r,
+                  height: 20.r,
+                  fit: BoxFit.fill,
+                ),
               ),
             ),
-          ),
         ],
       ),
     );

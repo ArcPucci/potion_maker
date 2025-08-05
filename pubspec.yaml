@@ -37,6 +37,7 @@ dependencies:
   shared_preferences: ^2.5.3
   flutter_screenutil: ^5.9.3
   gradient_borders: ^1.0.1
+  go_router: ^16.0.0
 
 dev_dependencies:
   flutter_test:
@@ -66,6 +67,7 @@ flutter:
   #   - images/a_dot_ham.jpeg
   assets:
     - assets/png/
+    - assets/png/books/
     - assets/png/buttons/
 
   # An image asset can refer to one or more resolution-specific "variants", see

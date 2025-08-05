@@ -4,3 +4,5 @@ export 'budget_box.dart';
 export 'dialogs/dialogs.dart';
 export 'cards/cards.dart';
 export 'animated/animated.dart';
+export 'books_shelf.dart';
+export 'bet_box.dart';
