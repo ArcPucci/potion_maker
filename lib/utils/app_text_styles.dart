@@ -99,6 +99,13 @@ class AppTextStyles {
     ],
   );
 
+  static final TextStyle ls40 = TextStyle(
+    fontFamily: _ls,
+    fontSize: 40.r,
+    fontWeight: FontWeight.w400,
+    color: Colors.white,
+  );
+
   static final TextStyle pp10_600 = TextStyle(
     fontFamily: _pp,
     fontSize: 10.r,

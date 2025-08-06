@@ -3,7 +3,7 @@ import 'package:potion_maker/screens/screens.dart';
 
 class AppRouter {
   final GoRouter router = GoRouter(
-    initialLocation: '/wheel',
+    initialLocation: '/garden',
     routes: [
       GoRoute(
         path: '/',
@@ -12,6 +12,10 @@ class AppRouter {
           GoRoute(
             path: 'wheel',
             builder: (context, state) => WheelGameScreen(),
+          ),
+          GoRoute(
+            path: 'garden',
+            builder: (context, state) => GreenhouseScreen(),
           ),
         ],
       ),

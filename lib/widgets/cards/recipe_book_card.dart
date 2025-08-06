@@ -11,7 +11,7 @@ class RecipeBookCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: 65.r,
-      height: 60.r,
+      height: 56.r,
       child: Stack(
         alignment: Alignment.topCenter,
         children: [
@@ -22,7 +22,7 @@ class RecipeBookCard extends StatelessWidget {
             fit: BoxFit.fill,
           ),
           Positioned(
-            bottom: 4.r,
+            bottom: 0,
             child: CustomBorderedText(
               text: "Root of Luck",
               strokeWidth: 2.sp,

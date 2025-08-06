@@ -3,3 +3,7 @@ export 'coins_shop_dialog.dart';
 export 'wheel_result_dialog.dart';
 export 'recipe_dialog.dart';
 export 'wheel_game_info_dialog.dart';
+export 'menu_dialog.dart';
+export 'shelf_dialog.dart';
+export 'greenhouse_info_dialog.dart';
+export 'seed_store_dialog.dart';

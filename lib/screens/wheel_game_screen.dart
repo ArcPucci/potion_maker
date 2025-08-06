@@ -81,16 +81,13 @@ class WheelGameScreen extends StatelessWidget {
           Positioned(
             top: 19.h,
             left: 30.w,
-            child: SafeArea(
-              right: false,
-              child: GestureDetector(
-                onTap: context.pop,
-                child: Image.asset(
-                  'assets/png/back.png',
-                  width: 81.r,
-                  height: 62.r,
-                  fit: BoxFit.fill,
-                ),
+            child: GestureDetector(
+              onTap: context.pop,
+              child: Image.asset(
+                'assets/png/back.png',
+                width: 81.r,
+                height: 62.r,
+                fit: BoxFit.fill,
               ),
             ),
           ),
@@ -102,12 +99,7 @@ class WheelGameScreen extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Image.asset(
-                      'assets/png/recipes.png',
-                      width: 80.r,
-                      height: 80.r,
-                      fit: BoxFit.fill,
-                    ),
+                    RecipesButton(),
                     BudgetBox(),
                     SizedBox(width: 14.w),
                     MenuButton(),

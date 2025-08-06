@@ -16,11 +16,7 @@ class MainScreen extends StatelessWidget {
             child: Image.asset('assets/png/main_bg.png', fit: BoxFit.cover),
           ),
           Positioned(top: 34.h, right: 333.w, child: MagicAnimated()),
-          Positioned(
-            left: 327.w,
-            bottom: -9.h,
-            child: AnimatedWoman(),
-          ),
+          Positioned(left: 327.w, bottom: -9.h, child: AnimatedWoman()),
           Positioned(
             left: 237.w,
             bottom: 30.h,
@@ -41,28 +37,21 @@ class MainScreen extends StatelessWidget {
           Positioned(
             top: 25.h,
             left: 36.w,
-            child: SafeArea(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  GestureDetector(
-                    onTap: () => showInfoDialog(context),
-                    child: Image.asset(
-                      'assets/png/info.png',
-                      width: 60.r,
-                      height: 67.r,
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                  SizedBox(width: 12.w),
-                  Image.asset(
-                    'assets/png/recipes.png',
-                    width: 70.r,
-                    height: 71.r,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                GestureDetector(
+                  onTap: () => showInfoDialog(context),
+                  child: Image.asset(
+                    'assets/png/info.png',
+                    width: 60.r,
+                    height: 67.r,
                     fit: BoxFit.fill,
                   ),
-                ],
-              ),
+                ),
+                SizedBox(width: 12.w),
+                RecipesButton(width: 70.r, height: 71.r),
+              ],
             ),
           ),
           Positioned(
@@ -73,6 +62,7 @@ class MainScreen extends StatelessWidget {
               textStyle: AppTextStyles.ls16,
               width: 132.r,
               height: 43.r,
+              onTap: () => context.go('/garden'),
             ),
           ),
           Positioned(
