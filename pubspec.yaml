@@ -69,6 +69,7 @@ flutter:
     - assets/png/
     - assets/png/books/
     - assets/png/flowers/
+    - assets/png/potions/
     - assets/png/buttons/
 
   # An image asset can refer to one or more resolution-specific "variants", see

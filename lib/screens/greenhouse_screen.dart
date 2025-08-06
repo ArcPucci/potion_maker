@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:potion_maker/repositories/repositories.dart';
 import 'package:potion_maker/utils/utils.dart';
 import 'package:potion_maker/widgets/widgets.dart';
 
@@ -112,12 +113,13 @@ class GreenhouseScreen extends StatelessWidget {
               ),
             ),
           ),
-          ...List.generate(beds.length, (index) {
+          ...List.generate(GreenhouseRepository.bedsList.length, (index) {
+            final bed = GreenhouseRepository.bedsList[index];
             return Positioned(
-              top: beds[index].top,
-              left: beds[index].left,
-              right: beds[index].right,
-              bottom: beds[index].bottom,
+              top: bed.top,
+              left: bed.left,
+              right: bed.right,
+              bottom: bed.bottom,
               child: Image.asset(
                 'assets/png/bed.png',
                 width: 127.r,
