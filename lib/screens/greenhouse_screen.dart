@@ -76,23 +76,7 @@ class GreenhouseScreen extends StatelessWidget {
                         strokeColor: AppTheme.darkOrange1,
                         textStyle: AppTextStyles.ls24.copyWith(height: 0.8),
                       ),
-                      Container(
-                        width: 289.r,
-                        height: 70.r,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage('assets/png/wood_bg_3.png'),
-                            fit: BoxFit.fill,
-                          ),
-                          boxShadow: [
-                            BoxShadow(
-                              offset: Offset(0, 3),
-                              blurRadius: 4,
-                              color: Colors.black.withAlpha(25),
-                            ),
-                          ],
-                        ),
-                      ),
+                      WarehouseCard(),
                     ],
                   ),
                   SizedBox(width: 11.w + 60.r),
@@ -120,12 +104,7 @@ class GreenhouseScreen extends StatelessWidget {
               left: bed.left,
               right: bed.right,
               bottom: bed.bottom,
-              child: Image.asset(
-                'assets/png/bed.png',
-                width: 127.r,
-                height: 65.r,
-                fit: BoxFit.fill,
-              ),
+              child: BedWidget(),
             );
           }),
         ],

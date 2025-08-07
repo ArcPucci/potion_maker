@@ -7,3 +7,4 @@ export 'animated/animated.dart';
 export 'books_shelf.dart';
 export 'bet_box.dart';
 export 'custom_switch_box.dart';
+export 'bed_widget.dart';

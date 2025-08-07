@@ -10,4 +10,15 @@ class GreenhouseRepository {
     Bed(right: 193.h, bottom: 81.h),
     Bed(right: 102.h, bottom: 9.h),
   ];
+
+  static final List<Flower> warehouse = [
+    Flower3(),
+    Flower4(),
+    Flower5(),
+    Flower2(),
+    Flower1(),
+    Flower6(),
+  ];
+
+  static final List<Flower> shopFlowers = [Flower6(), Flower4(), Flower5()];
 }

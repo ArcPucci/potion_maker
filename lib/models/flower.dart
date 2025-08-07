@@ -4,6 +4,7 @@ abstract class Flower extends Ingredient {
   final bool ripe;
   final int secondsToRipe;
   final List<String> states;
+  final int price;
 
   Flower({
     required super.name,
@@ -11,6 +12,7 @@ abstract class Flower extends Ingredient {
     required this.ripe,
     required this.secondsToRipe,
     required this.states,
+    this.price = 0,
   });
 }
 
@@ -47,6 +49,7 @@ class Flower4 extends Flower {
     super.asset = "assets/png/flowers/flower4_3.png",
     super.ripe = true,
     super.secondsToRipe = 600,
+    super.price = 300,
   }) : super(
          states: [
            "assets/png/flowers/flower4_1.png",
@@ -62,6 +65,7 @@ class Flower5 extends Flower {
     super.asset = "assets/png/flowers/flower5_3.png",
     super.ripe = true,
     super.secondsToRipe = 600,
+    super.price = 500,
   }) : super(
          states: [
            "assets/png/flowers/flower5_1.png",
@@ -77,6 +81,7 @@ class Flower6 extends Flower {
     super.asset = "assets/png/flowers/flower6_3.png",
     super.ripe = true,
     super.secondsToRipe = 600,
+    super.price = 200,
   }) : super(
          states: [
            "assets/png/flowers/flower6_1.png",

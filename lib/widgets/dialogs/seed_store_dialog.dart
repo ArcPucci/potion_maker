@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
+import 'package:potion_maker/repositories/repositories.dart';
 import 'package:potion_maker/widgets/buttons/buttons.dart';
 
 import '../../utils/utils.dart';
@@ -42,66 +43,71 @@ class SeedStoreDialog extends StatelessWidget {
                           right: 82.r,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: List.generate(3, (index) {
-                              return Column(
-                                children: [
-                                  Container(
-                                    width: 75.r,
-                                    height: 75.r,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(12),
-                                      color: AppTheme.green2.withAlpha(21),
-                                      border: GradientBoxBorder(
-                                        gradient: LinearGradient(
-                                          begin: Alignment.topCenter,
-                                          end: Alignment.bottomCenter,
-                                          colors: [
-                                            Color(0xFF01C28B),
-                                            Color(0xFF00573F),
-                                          ],
+                            children: List.generate(
+                              GreenhouseRepository.shopFlowers.length,
+                              (index) {
+                                final flower =
+                                    GreenhouseRepository.shopFlowers[index];
+                                return Column(
+                                  children: [
+                                    Container(
+                                      width: 75.r,
+                                      height: 75.r,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(12),
+                                        color: AppTheme.green2.withAlpha(21),
+                                        border: GradientBoxBorder(
+                                          gradient: LinearGradient(
+                                            begin: Alignment.topCenter,
+                                            end: Alignment.bottomCenter,
+                                            colors: [
+                                              Color(0xFF01C28B),
+                                              Color(0xFF00573F),
+                                            ],
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    alignment: Alignment.center,
-                                    child: Image.asset(
-                                      'assets/png/flowers/flower${index + 4}.png',
-                                      width: 40.r,
-                                      height: 53.r,
-                                      fit: BoxFit.cover,
-                                      alignment: Alignment.topCenter,
-                                    ),
-                                  ),
-                                  SizedBox(height: 5.h),
-                                  SizedBox(
-                                    width: 69.r,
-                                    height: 29.r,
-                                    child: Stack(
                                       alignment: Alignment.center,
-                                      children: [
-                                        Positioned(
-                                          right: 0,
-                                          child: LabeledButton(
-                                            label: "200",
-                                            width: 62.r,
-                                            height: 29.r,
-                                            textStyle: AppTextStyles.ls14,
-                                          ),
-                                        ),
-                                        Positioned(
-                                          left: 0,
-                                          child: Image.asset(
-                                            'assets/png/cent.png',
-                                            width: 23.r,
-                                            height: 23.r,
-                                            fit: BoxFit.fill,
-                                          ),
-                                        ),
-                                      ],
+                                      child: Image.asset(
+                                        flower.asset,
+                                        width: 40.r,
+                                        height: 53.r,
+                                        fit: BoxFit.cover,
+                                        alignment: Alignment.topCenter,
+                                      ),
                                     ),
-                                  ),
-                                ],
-                              );
-                            }),
+                                    SizedBox(height: 5.h),
+                                    SizedBox(
+                                      width: 69.r,
+                                      height: 29.r,
+                                      child: Stack(
+                                        alignment: Alignment.center,
+                                        children: [
+                                          Positioned(
+                                            right: 0,
+                                            child: LabeledButton(
+                                              label: flower.price.toString(),
+                                              width: 62.r,
+                                              height: 29.r,
+                                              textStyle: AppTextStyles.ls14,
+                                            ),
+                                          ),
+                                          Positioned(
+                                            left: 0,
+                                            child: Image.asset(
+                                              'assets/png/cent.png',
+                                              width: 23.r,
+                                              height: 23.r,
+                                              fit: BoxFit.fill,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                );
+                              },
+                            ),
                           ),
                         ),
                         Positioned(
