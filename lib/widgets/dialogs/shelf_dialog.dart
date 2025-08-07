@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:potion_maker/widgets/widgets.dart';
 
+import '../../repositories/repositories.dart';
 import '../../utils/utils.dart';
 
 class ShelfDialog extends StatelessWidget {
@@ -54,24 +55,31 @@ class ShelfDialog extends StatelessWidget {
                           right: 53.r,
                           bottom: 36.r,
                           child: GridView.builder(
-                            itemCount: 12,
+                            itemCount: RecipeRepository.potionsList.length,
                             shrinkWrap: true,
                             physics: NeverScrollableScrollPhysics(),
                             gridDelegate:
                                 SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: 4,
                                   mainAxisExtent: 85.r,
-                                  crossAxisSpacing: 51.r,
+                                  crossAxisSpacing: 40.r,
                                 ),
                             itemBuilder: (context, index) {
+                              final potion =
+                                  RecipeRepository.potionsList[index];
                               return Column(
                                 children: [
-                                  RecipeBookCard(),
+                                  RecipeBookCard(
+                                    name: potion.name,
+                                    asset: potion.bookAsset,
+                                  ),
                                   LabeledButton(
                                     label: "OPEN",
                                     width: 55.r,
                                     height: 20.r,
                                     textStyle: AppTextStyles.ls11,
+                                    onTap: () =>
+                                        showRecipeDialog(context, potion),
                                   ),
                                 ],
                               );
@@ -102,6 +110,15 @@ class ShelfDialog extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  void showRecipeDialog(context, potion) {
+    showDialog(
+      context: context,
+      useSafeArea: false,
+      barrierColor: Colors.transparent,
+      builder: (context) => RecipeDialog(potion: potion),
     );
   }
 }

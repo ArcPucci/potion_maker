@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:potion_maker/models/models.dart';
 import 'package:potion_maker/utils/utils.dart';
 import 'package:potion_maker/widgets/widgets.dart';
+
+import '../repositories/repositories.dart';
 
 class WheelGameScreen extends StatelessWidget {
   const WheelGameScreen({super.key});
@@ -70,14 +73,31 @@ class WheelGameScreen extends StatelessWidget {
                     width: 92.r,
                     height: 50.r,
                     textStyle: AppTextStyles.ls17,
-                    onTap: () => showResult(context),
+                    onTap: () =>
+                        showResult(context, RecipeRepository.potionsList.first),
                   ),
                 ],
               ),
             ),
           ),
-          Positioned(top: 69.h, left: 29.w, child: BooksShelf()),
-          Positioned(top: 69.h, right: 65.w, child: BooksShelf()),
+          Positioned(
+            top: 69.h,
+            left: 29.w,
+            child: BooksShelf(
+              types: [PotionType.normal, PotionType.common],
+              potions1: RecipeRepository.normalPotions,
+              potions2: RecipeRepository.commonPotions,
+            ),
+          ),
+          Positioned(
+            top: 69.h,
+            right: 65.w,
+            child: BooksShelf(
+              types: [PotionType.rare, PotionType.veryRare],
+              potions1: RecipeRepository.rarePotions,
+              potions2: RecipeRepository.veryRarePotions,
+            ),
+          ),
           Positioned(
             top: 19.h,
             left: 30.w,
@@ -122,22 +142,22 @@ class WheelGameScreen extends StatelessWidget {
     );
   }
 
-  void showResult(context) {
+  void showResult(context, potion) {
     showDialog(
       context: context,
       useSafeArea: false,
       barrierColor: Colors.black.withAlpha(16),
       builder: (context) =>
-          WheelResultDialog(onOpen: () => showRecipeDialog(context)),
+          WheelResultDialog(onOpen: () => showRecipeDialog(context, potion)),
     );
   }
 
-  void showRecipeDialog(context) {
+  void showRecipeDialog(context, potion) {
     showDialog(
       context: context,
       useSafeArea: false,
       barrierColor: Colors.black.withAlpha(16),
-      builder: (context) => RecipeDialog(),
+      builder: (context) => RecipeDialog(potion: potion),
     );
   }
 

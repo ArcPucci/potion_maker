@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:potion_maker/models/models.dart';
 
 import 'cards/cards.dart';
 
 class BooksShelf extends StatelessWidget {
-  const BooksShelf({super.key});
+  const BooksShelf({
+    super.key,
+    required this.potions1,
+    required this.potions2,
+    required this.types,
+  });
+
+  final List<PotionType> types;
+  final List<Potion> potions1;
+  final List<Potion> potions2;
 
   @override
   Widget build(BuildContext context) {
@@ -36,44 +46,48 @@ class BooksShelf extends StatelessWidget {
                 ),
                 Positioned(
                   top: 25.r,
-                  left: 38.r,
-                  child: Image.asset(
-                    'assets/png/normal.png',
-                    width: 47.r,
-                    height: 23.r,
-                    fit: BoxFit.fill,
+                  left: 30.r,
+                  child: Column(
+                    children: [
+                      _buildTitle(types.first),
+                      SizedBox(height: 5.r),
+                      SizedBox(
+                        height: 215.r,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: List.generate(potions1.length, (index) {
+                            final potion = potions1[index];
+                            return RecipeBookCard(
+                              name: potion.name,
+                              asset: potion.bookAsset,
+                            );
+                          }),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 Positioned(
                   top: 25.r,
-                  right: 34.r,
-                  child: Image.asset(
-                    'assets/png/common.png',
-                    width: 47.r,
-                    height: 23.r,
-                    fit: BoxFit.fill,
-                  ),
-                ),
-                Positioned(
-                  top: 55.r,
-                  left: 32.r,
-                  right: 28.r,
-                  bottom: 50.r,
-                  child: GridView.builder(
-                    itemCount: 6,
-                    padding: EdgeInsets.zero,
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    gridDelegate:
-                    SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      mainAxisExtent: 60.r,
-                      mainAxisSpacing: 15.r,
-                      crossAxisSpacing: 24.r,
-                    ),
-                    itemBuilder: (context, index) {
-                      return RecipeBookCard();
-                    },
+                  right: 30.r,
+                  child: Column(
+                    children: [
+                      _buildTitle(types.last),
+                      SizedBox(height: 5.r),
+                      SizedBox(
+                        height: 215.r,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: List.generate(potions2.length, (index) {
+                            final potion = potions2[index];
+                            return RecipeBookCard(
+                              name: potion.name,
+                              asset: potion.bookAsset,
+                            );
+                          }),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
@@ -81,6 +95,38 @@ class BooksShelf extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildTitle(PotionType type) {
+    if (type == PotionType.normal) {
+      return Image.asset(
+        'assets/png/normal.png',
+        width: 47.r,
+        height: 23.r,
+        fit: BoxFit.fill,
+      );
+    } else if (type == PotionType.common) {
+      return Image.asset(
+        'assets/png/common.png',
+        width: 47.r,
+        height: 23.r,
+        fit: BoxFit.fill,
+      );
+    } else if (type == PotionType.rare) {
+      return Image.asset(
+        'assets/png/rare.png',
+        width: 47.r,
+        height: 23.r,
+        fit: BoxFit.fill,
+      );
+    }
+
+    return Image.asset(
+      'assets/png/very_rare.png',
+      width: 47.r,
+      height: 23.r,
+      fit: BoxFit.fill,
     );
   }
 }

@@ -3,7 +3,7 @@ import 'package:potion_maker/screens/screens.dart';
 
 class AppRouter {
   final GoRouter router = GoRouter(
-    initialLocation: '/garden',
+    initialLocation: '/',
     routes: [
       GoRoute(
         path: '/',

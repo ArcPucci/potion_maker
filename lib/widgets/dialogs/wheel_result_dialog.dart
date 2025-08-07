@@ -78,7 +78,13 @@ class WheelResultDialog extends StatelessWidget {
             fit: BoxFit.fill,
           ),
         ),
-        Positioned(top: 111.r, child: RecipeBookCard()),
+        Positioned(
+          top: 111.r,
+          child: RecipeBookCard(
+            name: '',
+            asset: 'assets/png/books/root_of_luck.png',
+          ),
+        ),
         Positioned(
           bottom: 0,
           child: LabeledButton(

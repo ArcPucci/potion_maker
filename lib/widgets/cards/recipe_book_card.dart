@@ -5,7 +5,10 @@ import '../../utils/utils.dart';
 import '../widgets.dart';
 
 class RecipeBookCard extends StatelessWidget {
-  const RecipeBookCard({super.key});
+  const RecipeBookCard({super.key, required this.name, required this.asset});
+
+  final String name;
+  final String asset;
 
   @override
   Widget build(BuildContext context) {
@@ -15,16 +18,11 @@ class RecipeBookCard extends StatelessWidget {
       child: Stack(
         alignment: Alignment.topCenter,
         children: [
-          Image.asset(
-            'assets/png/books/root_of_luck.png',
-            width: 44.r,
-            height: 48.r,
-            fit: BoxFit.fill,
-          ),
+          Image.asset(asset, width: 44.r, height: 48.r, fit: BoxFit.fill),
           Positioned(
             bottom: 0,
             child: CustomBorderedText(
-              text: "Root of Luck",
+              text: name,
               strokeWidth: 2.sp,
               strokeColor: AppTheme.darkOrange2,
               textStyle: AppTextStyles.ls11,
