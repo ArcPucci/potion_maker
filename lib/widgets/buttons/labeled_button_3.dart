@@ -5,8 +5,9 @@ import '../../utils/utils.dart';
 import '../widgets.dart';
 
 class LabeledButton3 extends StatelessWidget {
-  const LabeledButton3({super.key, this.onTap});
+  const LabeledButton3({super.key, this.onTap, required this.price});
 
+  final int price;
   final VoidCallback? onTap;
 
   @override
@@ -38,7 +39,7 @@ class LabeledButton3 extends StatelessWidget {
                   child: FittedBox(
                     fit: BoxFit.scaleDown,
                     child: CustomBorderedText(
-                      text: "1000",
+                      text: "$price",
                       strokeWidth: 1.sp,
                       strokeColor: AppTheme.darkOrange1,
                       textStyle: AppTextStyles.ls11,

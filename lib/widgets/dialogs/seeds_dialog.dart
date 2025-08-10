@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
-import 'package:potion_maker/controllers/controllers.dart';
-import 'package:potion_maker/repositories/repositories.dart';
 
+import '../../controllers/controllers.dart';
+import '../../repositories/repositories.dart';
 import '../../utils/utils.dart';
-import '../widgets.dart';
+import '../buttons/buttons.dart';
 
-class SeedStoreDialog extends StatelessWidget {
-  const SeedStoreDialog({super.key});
+class SeedsDialog extends StatelessWidget {
+  const SeedsDialog({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -55,6 +55,8 @@ class SeedStoreDialog extends StatelessWidget {
                                         GreenhouseRepository.shopFlowers[index];
                                     final isBought = controller.availableFlowers
                                         .contains(flower.asset);
+                                    final riped = controller.ripedFlowers
+                                        .contains(flower.asset);
                                     return Column(
                                       children: [
                                         Container(
@@ -89,38 +91,18 @@ class SeedStoreDialog extends StatelessWidget {
                                         ),
                                         SizedBox(height: 5.h),
                                         isBought
-                                            ? SizedBox(height: 29.r)
-                                            : SizedBox(
-                                                width: 69.r,
-                                                height: 29.r,
-                                                child: Stack(
-                                                  alignment: Alignment.center,
-                                                  children: [
-                                                    Positioned(
-                                                      right: 0,
-                                                      child: LabeledButton(
-                                                        label: flower.price
-                                                            .toString(),
-                                                        width: 62.r,
-                                                        height: 29.r,
-                                                        textStyle:
-                                                            AppTextStyles.ls14,
-                                                        onTap: () => controller
-                                                            .buyFlower(flower),
-                                                      ),
-                                                    ),
-                                                    Positioned(
-                                                      left: 0,
-                                                      child: Image.asset(
-                                                        'assets/png/cent.png',
-                                                        width: 23.r,
-                                                        height: 23.r,
-                                                        fit: BoxFit.fill,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
+                                            ? riped
+                                                  ? SizedBox(height: 29.r)
+                                                  : LabeledButton(
+                                                      label: "TO PLANT",
+                                                      width: 71.r,
+                                                      height: 29.r,
+                                                      textStyle:
+                                                          AppTextStyles.ls14,
+                                                      onTap: () => controller
+                                                          .plantFlower(flower),
+                                                    )
+                                            : SizedBox(height: 29.r),
                                       ],
                                     );
                                   },
@@ -131,7 +113,6 @@ class SeedStoreDialog extends StatelessWidget {
                         ),
                         Positioned(
                           top: 10.r,
-                          left: 197.r,
                           child: ShaderMask(
                             shaderCallback: (Rect bounds) {
                               return LinearGradient(
@@ -140,7 +121,7 @@ class SeedStoreDialog extends StatelessWidget {
                                 end: Alignment.bottomCenter,
                               ).createShader(bounds);
                             },
-                            child: Text("INFO", style: AppTextStyles.ls36),
+                            child: Text("SEEDS", style: AppTextStyles.ls36),
                           ),
                         ),
                       ],

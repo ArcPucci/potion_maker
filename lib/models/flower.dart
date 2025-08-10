@@ -2,7 +2,6 @@ import 'package:potion_maker/models/models.dart';
 
 abstract class Flower extends Ingredient {
   final bool ripe;
-  final int secondsToRipe;
   final List<String> states;
   final int price;
 
@@ -10,7 +9,6 @@ abstract class Flower extends Ingredient {
     required super.name,
     required super.asset,
     required this.ripe,
-    required this.secondsToRipe,
     required this.states,
     this.price = 0,
   });
@@ -21,7 +19,6 @@ class Flower1 extends Flower {
     super.name = "Flower1",
     super.asset = "assets/png/flowers/flower1.png",
     super.ripe = true,
-    super.secondsToRipe = 600,
   }) : super(states: []);
 }
 
@@ -30,7 +27,6 @@ class Flower2 extends Flower {
     super.name = "Flower2",
     super.asset = "assets/png/flowers/flower2.png",
     super.ripe = true,
-    super.secondsToRipe = 600,
   }) : super(states: []);
 }
 
@@ -39,7 +35,6 @@ class Flower3 extends Flower {
     super.name = "Flower3",
     super.asset = "assets/png/flowers/flower3.png",
     super.ripe = true,
-    super.secondsToRipe = 600,
   }) : super(states: []);
 }
 
@@ -48,7 +43,6 @@ class Flower4 extends Flower {
     super.name = "Flower4",
     super.asset = "assets/png/flowers/flower4_3.png",
     super.ripe = true,
-    super.secondsToRipe = 600,
     super.price = 300,
   }) : super(
          states: [
@@ -64,7 +58,6 @@ class Flower5 extends Flower {
     super.name = "Flower5",
     super.asset = "assets/png/flowers/flower5_3.png",
     super.ripe = true,
-    super.secondsToRipe = 600,
     super.price = 500,
   }) : super(
          states: [
@@ -80,7 +73,6 @@ class Flower6 extends Flower {
     super.name = "Flower6",
     super.asset = "assets/png/flowers/flower6_3.png",
     super.ripe = true,
-    super.secondsToRipe = 600,
     super.price = 200,
   }) : super(
          states: [

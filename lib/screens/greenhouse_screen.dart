@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:potion_maker/repositories/repositories.dart';
+import 'package:get/get.dart';
+import 'package:potion_maker/controllers/controllers.dart';
 import 'package:potion_maker/utils/utils.dart';
 import 'package:potion_maker/widgets/widgets.dart';
 
 class GreenhouseScreen extends StatelessWidget {
-  const GreenhouseScreen({super.key});
+  GreenhouseScreen({super.key});
+
+  final _greenhouseController = GreenhouseController(Get.find());
 
   @override
   Widget build(BuildContext context) {
+    Get.put(_greenhouseController);
     return Material(
       child: Stack(
         alignment: Alignment.center,
@@ -97,16 +101,41 @@ class GreenhouseScreen extends StatelessWidget {
               ),
             ),
           ),
-          ...List.generate(GreenhouseRepository.bedsList.length, (index) {
-            final bed = GreenhouseRepository.bedsList[index];
-            return Positioned(
-              top: bed.top,
-              left: bed.left,
-              right: bed.right,
-              bottom: bed.bottom,
-              child: BedWidget(),
-            );
-          }),
+          Positioned.fill(
+            child: GetBuilder<GreenhouseController>(
+              builder: (controller) {
+                return Stack(
+                  children: List.generate(controller.beds.length, (index) {
+                    final bedModel = controller.beds[index];
+                    final bed = bedModel.bed;
+                    final isBought = controller.availableBeds.contains(bed.id);
+                    return Positioned(
+                      top: bed.top,
+                      left: bed.left,
+                      right: bed.right,
+                      bottom: bed.bottom,
+                      child: BedWidget(
+                        price: bed.price,
+                        isBought: isBought,
+                        flower: bedModel.flowerModel?.flower,
+                        riped: bedModel.flowerModel?.riped ?? false,
+                        secondsToRipe: bedModel.flowerModel?.secondsToRipe ?? 0,
+                        onSelect: () {
+                          controller.selectBed(bed);
+                          showSeedsDialog(context);
+                        },
+                        onBuy: () => showBedShopDialog(
+                          context,
+                          bed.price,
+                          () => controller.buyBed(bed),
+                        ),
+                      ),
+                    );
+                  }),
+                );
+              },
+            ),
+          ),
         ],
       ),
     );
@@ -130,6 +159,28 @@ class GreenhouseScreen extends StatelessWidget {
       barrierColor: Colors.black.withAlpha(16),
       builder: (BuildContext context) {
         return SeedStoreDialog();
+      },
+    );
+  }
+
+  void showSeedsDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      useSafeArea: false,
+      barrierColor: Colors.black.withAlpha(16),
+      builder: (BuildContext context) {
+        return SeedsDialog();
+      },
+    );
+  }
+
+  void showBedShopDialog(BuildContext context, int price, VoidCallback? onBuy) {
+    showDialog(
+      context: context,
+      useSafeArea: false,
+      barrierColor: Colors.black.withAlpha(16),
+      builder: (BuildContext context) {
+        return BedShopDialog(price: price, onBuy: onBuy);
       },
     );
   }

@@ -7,3 +7,5 @@ export 'menu_dialog.dart';
 export 'shelf_dialog.dart';
 export 'greenhouse_info_dialog.dart';
 export 'seed_store_dialog.dart';
+export 'bed_shop_dialog.dart';
+export 'seeds_dialog.dart';

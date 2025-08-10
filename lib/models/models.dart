@@ -4,3 +4,5 @@ export 'crystal.dart';
 export 'flower.dart';
 export 'potion.dart';
 export 'recipe.dart';
+export 'flower_model.dart';
+export 'bed_model.dart';
