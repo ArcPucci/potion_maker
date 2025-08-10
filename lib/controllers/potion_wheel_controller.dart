@@ -1,0 +1,95 @@
+import 'dart:math';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+class PotionWheelController extends GetxController
+    with GetSingleTickerProviderStateMixin {
+  final items = [
+    "",
+    "forest_dust",
+    "ether_cry",
+    "petal_brew",
+    "crystal_dream",
+    "mist_drop",
+    "ether_cry",
+    "sweet_bubble",
+    "root_of_luck",
+    "shadow_elixir",
+    "",
+    "forest_dust",
+    "ashen_glow",
+    "",
+    "petal_brew",
+    "shadow_elixir",
+    "mist_drop",
+    "dew_of_peace",
+    "timeless_surge",
+    "root_of_luck",
+    "whisper",
+  ];
+
+  late AnimationController _animationController;
+  late Animation<double> _animation;
+
+  final RxDouble rotationAngle = 0.0.obs;
+  final RxBool isSpinning = false.obs;
+  final RxInt selectedIndex = (-1).obs;
+
+  final Random _random = Random();
+
+  @override
+  void onInit() {
+    super.onInit();
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 5),
+    );
+
+    _animationController.addListener(() {
+      rotationAngle.value = _animation.value;
+    });
+
+    _animationController.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        isSpinning.value = false;
+        print('Winner: ${items[selectedIndex.value]}');
+      }
+    });
+  }
+
+  void spinWheel() {
+    if (isSpinning.value) return;
+
+    isSpinning.value = true;
+    selectedIndex.value = -1;
+
+    final int totalSectors = items.length;
+    final int winningIndex = _random.nextInt(totalSectors);
+    selectedIndex.value = winningIndex;
+
+    final double sectorAngle = 360 / totalSectors;
+
+    // Смещение в центр сектора
+    final double offset = sectorAngle / 2;
+
+    // Конечный угол
+    final double endAngle = (5 * 360) + // 5 оборотов
+        (360 - (winningIndex * sectorAngle) - offset);
+
+    _animation = Tween<double>(
+      begin: rotationAngle.value % 360,
+      end: endAngle,
+    ).animate(CurvedAnimation(
+      parent: _animationController,
+      curve: Curves.easeOut,
+    ));
+
+    _animationController.forward(from: 0);
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+}

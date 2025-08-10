@@ -1,14 +1,31 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
+import 'package:potion_maker/controllers/controllers.dart';
 import 'package:potion_maker/models/models.dart';
 import 'package:potion_maker/utils/utils.dart';
 import 'package:potion_maker/widgets/widgets.dart';
 
 import '../repositories/repositories.dart';
 
-class WheelGameScreen extends StatelessWidget {
+class WheelGameScreen extends StatefulWidget {
   const WheelGameScreen({super.key});
+
+  @override
+  State<WheelGameScreen> createState() => _WheelGameScreenState();
+}
+
+class _WheelGameScreenState extends State<WheelGameScreen> {
+  final controller = Get.put(PotionWheelController());
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,11 +50,16 @@ class WheelGameScreen extends StatelessWidget {
                 children: [
                   Positioned(
                     bottom: 0,
-                    child: Image.asset(
-                      'assets/png/wheel_bg.png',
-                      width: 258.r,
-                      height: 258.r,
-                      fit: BoxFit.fill,
+                    child: Obx(
+                      () => Transform.rotate(
+                        angle: controller.rotationAngle.value * (pi / 180),
+                        child: Image.asset(
+                          'assets/png/wheel_bg.png',
+                          width: 258.r,
+                          height: 258.r,
+                          fit: BoxFit.fill,
+                        ),
+                      ),
                     ),
                   ),
                   Positioned(
@@ -73,8 +95,7 @@ class WheelGameScreen extends StatelessWidget {
                     width: 92.r,
                     height: 50.r,
                     textStyle: AppTextStyles.ls17,
-                    onTap: () =>
-                        showResult(context, RecipeRepository.potionsList.first),
+                    onTap: controller.spinWheel,
                   ),
                 ],
               ),
