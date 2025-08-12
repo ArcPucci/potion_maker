@@ -78,7 +78,10 @@ class GreenhouseScreen extends StatelessWidget {
                         text: "WAREHOUSE:",
                         strokeWidth: 2.sp,
                         strokeColor: AppTheme.darkOrange1,
-                        textStyle: AppTextStyles.ls24.copyWith(height: 0.8),
+                        textStyle: AppTextStyles.ls24.copyWith(
+                          height: 0.8,
+                          fontSize: 24.r,
+                        ),
                       ),
                       WarehouseCard(),
                     ],
@@ -96,7 +99,10 @@ class GreenhouseScreen extends StatelessWidget {
                 label: "OPEN A STORE",
                 width: 143.r,
                 height: 46.r,
-                textStyle: AppTextStyles.ls17.copyWith(letterSpacing: 0),
+                textStyle: AppTextStyles.ls17.copyWith(
+                  letterSpacing: 0,
+                  fontSize: 17.r,
+                ),
                 onTap: () => showSeedStoreDialog(context),
               ),
             ),

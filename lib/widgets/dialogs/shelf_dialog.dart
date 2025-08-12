@@ -48,7 +48,9 @@ class ShelfDialog extends StatelessWidget {
                             text: "Recipes",
                             strokeWidth: 2.sp,
                             strokeColor: AppTheme.green2,
-                            textStyle: AppTextStyles.ls40,
+                            textStyle: AppTextStyles.ls40.copyWith(
+                              fontSize: 40.r,
+                            ),
                           ),
                         ),
                         Positioned(
@@ -87,7 +89,8 @@ class ShelfDialog extends StatelessWidget {
                                           label: "OPEN",
                                           width: 55.r,
                                           height: 20.r,
-                                          textStyle: AppTextStyles.ls11,
+                                          textStyle: AppTextStyles.ls11
+                                              .copyWith(fontSize: 11.r),
                                           onTap: () =>
                                               showRecipeDialog(context, potion),
                                         ),

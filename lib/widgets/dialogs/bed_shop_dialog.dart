@@ -44,7 +44,10 @@ class BedShopDialog extends StatelessWidget {
                             end: Alignment.bottomCenter,
                           ).createShader(bounds);
                         },
-                        child: Text("BED", style: AppTextStyles.ls36),
+                        child: Text(
+                          "BED",
+                          style: AppTextStyles.ls36.copyWith(fontSize: 36.r),
+                        ),
                       ),
                     ),
                     Positioned(

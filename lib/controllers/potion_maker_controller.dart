@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:get/get.dart';
+import 'package:potion_maker/controllers/controllers.dart';
 import 'package:potion_maker/models/models.dart';
 import 'package:potion_maker/repositories/repositories.dart';
 
@@ -9,13 +10,23 @@ enum GameStatus { idle, intro, playing, paused, finished }
 
 class PotionMakerController extends GetxController {
   final AppConfigRepository _appConfigRepository;
-  final void Function(bool? won, int correct, int wrong) onGameFinished;
+  final AppConfigController _appConfigController;
+  final void Function(bool? won, int correct, int wrong, int sum)
+  onGameFinished;
 
-  PotionMakerController(this.onGameFinished, this._appConfigRepository) {
+  PotionMakerController(
+    this.onGameFinished,
+    this._appConfigRepository,
+    this._appConfigController,
+  ) {
     init();
   }
 
+  int get coins => _appConfigController.coins.value;
+
   Timer? _timer;
+
+  int _sum = 0;
 
   static const _initTime = 180;
 
@@ -48,7 +59,7 @@ class PotionMakerController extends GetxController {
 
   int _currentPotion = 0;
 
-  List<bool?> _potionMade = [null, null, null, null];
+  final List<bool?> _potionMade = [null, null, null, null];
 
   List<bool?> get potionMade => _potionMade;
 
@@ -71,18 +82,20 @@ class PotionMakerController extends GetxController {
   bool get boilerAnimating => _status == GameStatus.playing;
 
   bool get canGrind =>
-      _potionMade.every((e) => e ?? true) &&
+      _potionMade[_currentPotion] == null &&
       _ingredients.where((e) => e?.correct ?? false).length == countIngredients;
 
   int get countIngredients => _potions[_currentPotion].recipe.length - 1;
 
   void init() {
+    _sum = 0;
     _updateAvailableIngredients();
     _generatePotions();
     _ingredients = [null, null, null, null];
     introTime.value = 3;
     remaining.value = _initTime;
     _status = GameStatus.idle;
+    update();
   }
 
   void startGame() {
@@ -119,6 +132,7 @@ class PotionMakerController extends GetxController {
   }
 
   void onGrind() {
+    if (_hasDust) return;
     _hasDust = true;
     update();
   }
@@ -135,16 +149,19 @@ class PotionMakerController extends GetxController {
     update();
 
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (_status != GameStatus.playing) return;
       remaining.value--;
       if (remaining.value == 0) {
         final won = _potionMade.where((e) => e == true);
+        final wrong = _potionMade.where((e) => e == false);
         onGameFinished(
           won.isNotEmpty ? null : false,
           won.length,
-          _potionMade.length - won.length,
+          wrong.length,
+          _sum,
         );
         _status = GameStatus.finished;
-        timer.cancel();
+        _timer?.cancel();
       }
     });
   }
@@ -156,26 +173,29 @@ class PotionMakerController extends GetxController {
 
   void potionCompleted() async {
     _potionMade[_currentPotion] = true;
+    _sum += _getTicketValue(_potions[_currentPotion].type);
     update();
 
     await Future.delayed(Duration(seconds: 3));
-
-    if (_currentPotion == _potions.length - 1) {
-      final won = _potionMade.where((e) => e == true);
-      onGameFinished(
-        won.isNotEmpty ? true : false,
-        won.length,
-        _potionMade.length - won.length,
-      );
-      _timer?.cancel();
-      return;
-    }
 
     _nextPotion();
     update();
   }
 
   void _nextPotion() {
+    if (_currentPotion == _potions.length - 1) {
+      final won = _potionMade.where((e) => e == true);
+      final wrong = _potionMade.where((e) => e == false);
+      onGameFinished(
+        won.isNotEmpty ? null : false,
+        won.length,
+        wrong.length,
+        _sum,
+      );
+      _timer?.cancel();
+      return;
+    }
+
     _hasDust = false;
     _potionType = null;
     _currentPotion++;
@@ -226,5 +246,36 @@ class PotionMakerController extends GetxController {
 
       _potions.add(RecipesRepository.potionsList[rand]);
     }
+  }
+
+  int _getTicketValue(PotionType type) {
+    switch (type) {
+      case PotionType.normal:
+        return 20;
+      case PotionType.common:
+        return 50;
+      case PotionType.rare:
+        return 80;
+      case PotionType.veryRare:
+        return 100;
+    }
+  }
+
+  void buyCrystal(Crystal crystal) async {
+    final list = _appConfigRepository.getBoughtCrystals();
+    if (list.contains(crystal.asset)) return;
+    _appConfigController.addCoins(-crystal.price);
+    list.add(crystal.asset);
+    await _appConfigRepository.setBoughtCrystals(list);
+    _availableIngredients.add(crystal.asset);
+    update();
+  }
+
+  void onTapMenu() {
+    Get.back();
+  }
+
+  void playAgain() {
+    init();
   }
 }

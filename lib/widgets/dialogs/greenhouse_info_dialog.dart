@@ -79,13 +79,17 @@ class _GreenhouseInfoDialogState extends State<GreenhouseInfoDialog> {
                                 Text(
                                   "You are in the greenhouse of magical plants—a place where magic is born. In this section, you will grow many wonderful plants needed for potion-making. Without them, even the rarest and most valuable recipes will remain useless."
                                       .toUpperCase(),
-                                  style: AppTextStyles.pp10_600,
+                                  style: AppTextStyles.pp10_600.copyWith(
+                                    fontSize: 10.r,
+                                  ),
                                 ),
                                 SizedBox(height: 8.h),
                                 Text(
                                   "To replenish your stock of magical herbs, start by planting seeds. You can purchase seeds for coins in the shop. If you're short on coins, you can always buy them there as well."
                                       .toUpperCase(),
-                                  style: AppTextStyles.pp10_600,
+                                  style: AppTextStyles.pp10_600.copyWith(
+                                    fontSize: 10.r,
+                                  ),
                                 ),
                                 SizedBox(height: 6.h),
                                 SizedBox(
@@ -113,13 +117,17 @@ class _GreenhouseInfoDialogState extends State<GreenhouseInfoDialog> {
                                 Text(
                                   "Before planting, you need to make sure you have an available plot for the seeds. If you don't have one, you need to buy a free plot and click the plant button, after which you can choose which specific plant you want to plant."
                                       .toUpperCase(),
-                                  style: AppTextStyles.pp10_600,
+                                  style: AppTextStyles.pp10_600.copyWith(
+                                    fontSize: 10.r,
+                                  ),
                                 ),
                                 SizedBox(height: 6.h),
                                 Text(
                                   "After purchasing the seeds, you need to plant them in the soil and wait for 10 minutes."
                                       .toUpperCase(),
-                                  style: AppTextStyles.pp10_600,
+                                  style: AppTextStyles.pp10_600.copyWith(
+                                    fontSize: 10.r,
+                                  ),
                                 ),
                                 SizedBox(height: 6.h),
                                 SizedBox(
@@ -147,7 +155,9 @@ class _GreenhouseInfoDialogState extends State<GreenhouseInfoDialog> {
                                 Text(
                                   "After purchasing the seeds, you need to plant them in the soil and wait for 10 minutes."
                                       .toUpperCase(),
-                                  style: AppTextStyles.pp10_600,
+                                  style: AppTextStyles.pp10_600.copyWith(
+                                    fontSize: 10.r,
+                                  ),
                                 ),
                                 SizedBox(height: 6.h),
                                 Image.asset(
@@ -160,7 +170,9 @@ class _GreenhouseInfoDialogState extends State<GreenhouseInfoDialog> {
                                 Text(
                                   "Once the timer ends, the magical plant will be available for use—it will appear in the main game and in your inventory list. With it, you will be able to create even more diverse potions from your magical library."
                                       .toUpperCase(),
-                                  style: AppTextStyles.pp10_600,
+                                  style: AppTextStyles.pp10_600.copyWith(
+                                    fontSize: 10.r,
+                                  ),
                                 ),
                                 SizedBox(height: 13.h),
                                 Image.asset(
@@ -203,7 +215,12 @@ class _GreenhouseInfoDialogState extends State<GreenhouseInfoDialog> {
                                 end: Alignment.bottomCenter,
                               ).createShader(bounds);
                             },
-                            child: Text("INFO", style: AppTextStyles.ls36),
+                            child: Text(
+                              "INFO",
+                              style: AppTextStyles.ls36.copyWith(
+                                fontSize: 36.r,
+                              ),
+                            ),
                           ),
                         ),
                       ],

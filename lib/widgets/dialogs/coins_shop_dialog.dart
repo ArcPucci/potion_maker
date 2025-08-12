@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:potion_maker/controllers/controllers.dart';
 import 'package:potion_maker/repositories/repositories.dart';
 import 'package:potion_maker/widgets/widgets.dart';
 
@@ -45,6 +47,7 @@ class _CoinsShopDialogState extends State<CoinsShopDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final value = Get.find<AppConfigController>();
     return BackdropFilter(
       filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
       child: Material(
@@ -88,7 +91,10 @@ class _CoinsShopDialogState extends State<CoinsShopDialog> {
                                 ),
                             itemBuilder: (context, index) {
                               final coin = ShopRepo.coinsList[index];
-                              return CoinCard(coinsModel: coin);
+                              return CoinCard(
+                                coinsModel: coin,
+                                onBuy: () => value.addCoins(coin.quantity),
+                              );
                             },
                           ),
                         ),
@@ -114,7 +120,12 @@ class _CoinsShopDialogState extends State<CoinsShopDialog> {
                                 end: Alignment.bottomCenter,
                               ).createShader(bounds);
                             },
-                            child: Text("SHOP COIN", style: AppTextStyles.ls36),
+                            child: Text(
+                              "SHOP COIN",
+                              style: AppTextStyles.ls36.copyWith(
+                                fontSize: 36.r,
+                              ),
+                            ),
                           ),
                         ),
                       ],

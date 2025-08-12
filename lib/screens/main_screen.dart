@@ -29,7 +29,7 @@ class MainScreen extends StatelessWidget {
                   bottom: 27.r,
                   child: LabeledButton(
                     label: 'GAME',
-                    textStyle: AppTextStyles.ls20,
+                    textStyle: AppTextStyles.ls20.copyWith(fontSize: 20.r),
                     onTap: () => Get.to(() => PotionMakeScreen()),
                   ),
                 ),
@@ -61,7 +61,7 @@ class MainScreen extends StatelessWidget {
             left: 137.w,
             child: LabeledButton(
               label: "GREENHOUSE",
-              textStyle: AppTextStyles.ls16,
+              textStyle: AppTextStyles.ls16.copyWith(fontSize: 16.r),
               width: 132.r,
               height: 43.r,
               onTap: () => Get.to(() => GreenhouseScreen()),
@@ -84,7 +84,7 @@ class MainScreen extends StatelessWidget {
                     bottom: 37.r,
                     child: LabeledButton(
                       label: 'LIBRARY',
-                      textStyle: AppTextStyles.ls16,
+                      textStyle: AppTextStyles.ls16.copyWith(fontSize: 16.r),
                     ),
                   ),
                 ],

@@ -51,6 +51,7 @@ class SeedsDialog extends StatelessWidget {
                                 textAlign: TextAlign.center,
                                 style: AppTextStyles.ls16.copyWith(
                                   color: Color(0xFF6C2800),
+                                  fontSize: 16.r,
                                 ),
                               ),
                             if (hasAvailableFlowers)
@@ -114,7 +115,8 @@ class SeedsDialog extends StatelessWidget {
                                                   : "BUY",
                                               width: 71.r,
                                               height: 29.r,
-                                              textStyle: AppTextStyles.ls14,
+                                              textStyle: AppTextStyles.ls14
+                                                  .copyWith(fontSize: 14.r),
                                               onTap: () {
                                                 if (!isBought || riped) {
                                                   return;
@@ -143,7 +145,12 @@ class SeedsDialog extends StatelessWidget {
                                     end: Alignment.bottomCenter,
                                   ).createShader(bounds);
                                 },
-                                child: Text("SEEDS", style: AppTextStyles.ls36),
+                                child: Text(
+                                  "SEEDS",
+                                  style: AppTextStyles.ls36.copyWith(
+                                    fontSize: 36.r,
+                                  ),
+                                ),
                               ),
                             ),
                           ],

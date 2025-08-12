@@ -36,7 +36,10 @@ class TimerBox extends StatelessWidget {
               child: CustomBorderedText(
                 text: time,
                 strokeWidth: 1.sp,
-                textStyle: AppTextStyles.ls20.copyWith(letterSpacing: 0),
+                textStyle: AppTextStyles.ls20.copyWith(
+                  letterSpacing: 0,
+                  fontSize: 20.r,
+                ),
                 strokeColor: AppTheme.darkOrange1,
               ),
             ),

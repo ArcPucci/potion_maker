@@ -48,7 +48,10 @@ class IngredientCard extends StatelessWidget {
                       ),
                     ),
                     alignment: Alignment.center,
-                    child: Text("${index + 1}", style: AppTextStyles.lo15),
+                    child: Text(
+                      "${index + 1}",
+                      style: AppTextStyles.lo15.copyWith(fontSize: 15.r),
+                    ),
                   ),
                 ),
                 Positioned(

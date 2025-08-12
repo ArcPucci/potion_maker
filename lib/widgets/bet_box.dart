@@ -52,7 +52,7 @@ class BetBox extends StatelessWidget {
                 text: '$bet',
                 strokeWidth: 1.sp,
                 strokeColor: AppTheme.darkOrange2,
-                textStyle: AppTextStyles.ls18,
+                textStyle: AppTextStyles.ls18.copyWith(fontSize: 18.r),
               ),
             ),
           ),

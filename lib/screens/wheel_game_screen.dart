@@ -91,7 +91,7 @@ class _WheelGameScreenState extends State<WheelGameScreen> {
                         label: "MAX BET",
                         width: 92.r,
                         height: 50.r,
-                        textStyle: AppTextStyles.ls17,
+                        textStyle: AppTextStyles.ls17.copyWith(fontSize: 17.r),
                         onTap: controller.maxBet,
                       ),
                       BetBox(
@@ -105,7 +105,9 @@ class _WheelGameScreenState extends State<WheelGameScreen> {
                           label: "SPIN",
                           width: 92.r,
                           height: 50.r,
-                          textStyle: AppTextStyles.ls17,
+                          textStyle: AppTextStyles.ls17.copyWith(
+                            fontSize: 17.r,
+                          ),
                           onTap: controller.spinWheel,
                         ),
                       ),

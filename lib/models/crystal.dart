@@ -32,7 +32,7 @@ class OrangeCrystal extends Crystal {
 
 class WhiteCrystal extends Crystal {
   WhiteCrystal({
-    super.name = "White Crystal",
+    super.name = "GEMWOMEN",
     super.price = 300,
     super.asset = "assets/png/white_crystal.png",
     super.assetCup = "assets/png/white_crystal_cup.png",

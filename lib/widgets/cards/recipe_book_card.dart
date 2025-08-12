@@ -41,7 +41,7 @@ class RecipeBookCard extends StatelessWidget {
                 text: name,
                 strokeWidth: 2.sp,
                 strokeColor: AppTheme.darkOrange2,
-                textStyle: AppTextStyles.ls11,
+                textStyle: AppTextStyles.ls11.copyWith(fontSize: 11.r),
               ),
             ),
           ),

@@ -78,12 +78,15 @@ class _MainGameInfoDialogState extends State<MainGameInfoDialog> {
                                 Text(
                                   "You are in the main menu, where access to three interconnected games is available. Let's start with the main one."
                                       .toUpperCase(),
-                                  style: AppTextStyles.pp10_600,
+                                  style: AppTextStyles.pp10_600.copyWith(
+                                    fontSize: 10.r,
+                                  ),
                                 ),
                                 SizedBox(height: 22.h),
                                 Text(
                                   "MAIN GAME",
                                   style: AppTextStyles.pp10_600.copyWith(
+                                    fontSize: 10.r,
                                     color: AppTheme.green1,
                                   ),
                                 ),
@@ -91,7 +94,9 @@ class _MainGameInfoDialogState extends State<MainGameInfoDialog> {
                                 Text(
                                   "In the main game, you take on the role of the assistant to a sorceress and fulfill potion orders. But it's not that simple: to brew potions, you'll need recipes and ingredients — this is where the connection to other games begins."
                                       .toUpperCase(),
-                                  style: AppTextStyles.pp10_600,
+                                  style: AppTextStyles.pp10_600.copyWith(
+                                    fontSize: 10.r,
+                                  ),
                                 ),
                                 SizedBox(height: 9.h),
                                 Image.asset(
@@ -106,20 +111,25 @@ class _MainGameInfoDialogState extends State<MainGameInfoDialog> {
 At the start of the game, you receive 3 basic recipes and 3 simple magical herbs as a gift — enough to get started right away and earn coins to buy new recipes and rare herbs.
 The more complex the recipe, the more valuable the potion. This means your reward for it will be higher."""
                                       .toUpperCase(),
-                                  style: AppTextStyles.pp10_600,
+                                  style: AppTextStyles.pp10_600.copyWith(
+                                    fontSize: 10.r,
+                                  ),
                                 ),
                                 SizedBox(height: 16.h),
                                 Text(
                                   "GREENHOUSE",
                                   style: AppTextStyles.pp10_600.copyWith(
                                     color: AppTheme.green1,
+                                    fontSize: 10.r,
                                   ),
                                 ),
                                 SizedBox(height: 7.h),
                                 Text(
                                   "In this part of the game, you grow ingredients for potion-making. At the very beginning, you receive 3 basic magical herbs, which are enough to create simple yet inexpensive elixirs. To earn more, you will need to acquire new magical plants and expand your plots for cultivation. Upgrade your greenhouse, discover rare herbs, and increase your yield—all in the name of great potions!"
                                       .toUpperCase(),
-                                  style: AppTextStyles.pp10_600,
+                                  style: AppTextStyles.pp10_600.copyWith(
+                                    fontSize: 10.r,
+                                  ),
                                 ),
                                 SizedBox(height: 10.h),
                                 Image.asset(
@@ -133,13 +143,16 @@ The more complex the recipe, the more valuable the potion. This means your rewar
                                   "WHEEL OF KNOWLEDGE",
                                   style: AppTextStyles.pp10_600.copyWith(
                                     color: AppTheme.green1,
+                                    fontSize: 10.r,
                                   ),
                                 ),
                                 SizedBox(height: 6.h),
                                 Text(
                                   "In this section of the game, you can win the rarest recipes! To try your luck, you'll need coins—place your bets and watch the outcome. Winning will bring you new magical books and unique recipes, while losing will only grant you experience. Take risks to expand your collection and become a true master of potion-making!"
                                       .toUpperCase(),
-                                  style: AppTextStyles.pp10_600,
+                                  style: AppTextStyles.pp10_600.copyWith(
+                                    fontSize: 10.r,
+                                  ),
                                 ),
                                 SizedBox(height: 19.h),
                                 Image.asset(
@@ -153,6 +166,7 @@ The more complex the recipe, the more valuable the potion. This means your rewar
                                   "RECIPE BOOK",
                                   style: AppTextStyles.pp10_600.copyWith(
                                     color: AppTheme.green1,
+                                    fontSize: 10.r,
                                   ),
                                 ),
                                 SizedBox(height: 7.h),
@@ -166,7 +180,9 @@ The more complex the recipe, the more valuable the potion. This means your rewar
                                 Text(
                                   "In this section of the game, you can win the rarest recipes! To try your luck, you'll need coins—place your bets and watch the outcome. Winning will bring you new magical books and unique recipes, while losing will only grant you experience. Take risks to expand your collection and become a true master of potion-making!"
                                       .toUpperCase(),
-                                  style: AppTextStyles.pp10_600,
+                                  style: AppTextStyles.pp10_600.copyWith(
+                                    fontSize: 10.r,
+                                  ),
                                 ),
                               ],
                             ),
@@ -195,7 +211,12 @@ The more complex the recipe, the more valuable the potion. This means your rewar
                                 end: Alignment.bottomCenter,
                               ).createShader(bounds);
                             },
-                            child: Text("INFO", style: AppTextStyles.ls36),
+                            child: Text(
+                              "INFO",
+                              style: AppTextStyles.ls36.copyWith(
+                                fontSize: 36.r,
+                              ),
+                            ),
                           ),
                         ),
                       ],

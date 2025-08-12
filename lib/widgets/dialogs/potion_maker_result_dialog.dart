@@ -2,8 +2,11 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:potion_maker/utils/utils.dart';
 import 'package:potion_maker/widgets/widgets.dart';
+
+import '../../controllers/controllers.dart';
 
 class PotionMakerResultDialog extends StatelessWidget {
   const PotionMakerResultDialog({
@@ -11,14 +14,17 @@ class PotionMakerResultDialog extends StatelessWidget {
     this.won,
     required this.correct,
     required this.wrong,
+    required this.sum,
   });
 
   final bool? won;
   final int correct;
   final int wrong;
+  final int sum;
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<PotionMakerController>();
     return BackdropFilter(
       filter: ImageFilter.blur(sigmaY: 5, sigmaX: 5),
       child: Material(
@@ -43,15 +49,15 @@ class PotionMakerResultDialog extends StatelessWidget {
                   top: 101.r,
                   child: Column(
                     children: [
-                      BudgetBox(budget: 200, hasPlus: false, hasSymbol: true),
+                      BudgetBox(budget: sum, hasPlus: false, hasSymbol: true),
                       SizedBox(height: 31.r),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          if (won != null && !won!)
+                          if (won == null || (won != null && !won!))
                             _SquareCounter(count: wrong, correct: false),
                           if (won == null) SizedBox(width: 24.r),
-                          if (won != null && won!)
+                          if (won == null || (won != null && won!))
                             _SquareCounter(count: correct, correct: true),
                         ],
                       ),
@@ -68,9 +74,16 @@ class PotionMakerResultDialog extends StatelessWidget {
                       LabeledButton(
                         label: "PLAY AGAIN",
                         width: 133.r,
-                        textStyle: AppTextStyles.ls20,
+                        textStyle: AppTextStyles.ls20.copyWith(fontSize: 20.r),
+                        onTap: () {
+                          Navigator.of(context).pop();
+                          controller.playAgain();
+                        },
                       ),
-                      LabeledButton(label: "MENU"),
+                      LabeledButton(label: "MENU", onTap: () {
+                        Navigator.of(context).pop();
+                        controller.onTapMenu();
+                      }),
                     ],
                   ),
                 ),
@@ -143,7 +156,10 @@ class _SquareCounter extends StatelessWidget {
                   height: 56.r,
                   fit: BoxFit.fill,
                 ),
-                Text("$count", style: AppTextStyles.ls36),
+                Text(
+                  "$count",
+                  style: AppTextStyles.ls36.copyWith(fontSize: 36.r),
+                ),
               ],
             ),
           ),

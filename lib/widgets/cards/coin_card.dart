@@ -26,7 +26,7 @@ class CoinCard extends StatelessWidget {
           label: coinsModel.priceString,
           width: 62.r,
           height: 29.r,
-          textStyle: AppTextStyles.ls14,
+          textStyle: AppTextStyles.ls14.copyWith(fontSize: 14.r),
           onTap: onBuy,
         ),
       ],

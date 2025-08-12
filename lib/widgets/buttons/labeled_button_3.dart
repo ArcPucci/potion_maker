@@ -42,7 +42,7 @@ class LabeledButton3 extends StatelessWidget {
                       text: "$price",
                       strokeWidth: 1.sp,
                       strokeColor: AppTheme.darkOrange1,
-                      textStyle: AppTextStyles.ls11,
+                      textStyle: AppTextStyles.ls11.copyWith(fontSize: 11.r),
                     ),
                   ),
                 ),

@@ -14,13 +14,13 @@ void main() {
     () async {
       WidgetsFlutterBinding.ensureInitialized();
 
-      final preferences = await SharedPreferences.getInstance();
-      final appConfigRepository = AppConfigRepository(preferences);
-
       await SystemChrome.setPreferredOrientations([
         DeviceOrientation.landscapeLeft,
         DeviceOrientation.landscapeRight,
       ]);
+
+      final preferences = await SharedPreferences.getInstance();
+      final appConfigRepository = AppConfigRepository(preferences);
 
       Get.put(appConfigRepository);
       Get.put(AppConfigController(appConfigRepository));

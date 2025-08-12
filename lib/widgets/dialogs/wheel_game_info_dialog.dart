@@ -79,13 +79,17 @@ class _WheelGameInfoDialogState extends State<WheelGameInfoDialog> {
                                 Text(
                                   "You are in the Knowledge Wheel section, where you can win rare books by spinning the Knowledge Wheel, but first, you need to place a bet to spin."
                                       .toUpperCase(),
-                                  style: AppTextStyles.pp10_600,
+                                  style: AppTextStyles.pp10_600.copyWith(
+                                    fontSize: 10.r,
+                                  ),
                                 ),
                                 SizedBox(height: 29.h),
                                 Text(
                                   "At the bottom of the screen, there are betting buttons. Select the number of coins you are willing to spend to place a bet and press the Spin button. If you want to take a risk, you can bet the entire amount of coins by pressing the Max Bet button."
                                       .toUpperCase(),
-                                  style: AppTextStyles.pp10_600,
+                                  style: AppTextStyles.pp10_600.copyWith(
+                                    fontSize: 10.r,
+                                  ),
                                 ),
                                 SizedBox(height: 22.h),
                                 Image.asset(
@@ -98,7 +102,9 @@ class _WheelGameInfoDialogState extends State<WheelGameInfoDialog> {
                                 Text(
                                   "After pressing one of the buttons listed above, the wheel will spin and stop on a random book, which will be your prize. The book can be either rare or common, and there are also spaces on the wheel that are empty; if you land on one of those, your bet will be forfeited."
                                       .toUpperCase(),
-                                  style: AppTextStyles.pp10_600,
+                                  style: AppTextStyles.pp10_600.copyWith(
+                                    fontSize: 10.r,
+                                  ),
                                 ),
                                 SizedBox(height: 20.h),
 
@@ -112,7 +118,9 @@ class _WheelGameInfoDialogState extends State<WheelGameInfoDialog> {
                                 Text(
                                   "If you have won a new recipe, it will immediately appear on the bookshelf and in the recipe book, and a new potion order will also appear in the main game."
                                       .toUpperCase(),
-                                  style: AppTextStyles.pp10_600,
+                                  style: AppTextStyles.pp10_600.copyWith(
+                                    fontSize: 10.r,
+                                  ),
                                 ),
                                 SizedBox(height: 17.h),
                                 Image.asset(
@@ -148,7 +156,12 @@ class _WheelGameInfoDialogState extends State<WheelGameInfoDialog> {
                                 end: Alignment.bottomCenter,
                               ).createShader(bounds);
                             },
-                            child: Text("INFO", style: AppTextStyles.ls36),
+                            child: Text(
+                              "INFO",
+                              style: AppTextStyles.ls36.copyWith(
+                                fontSize: 36.r,
+                              ),
+                            ),
                           ),
                         ),
                       ],

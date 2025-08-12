@@ -118,7 +118,7 @@ class WheelResultDialog extends StatelessWidget {
           children: [
             Text(
               "Unfortunately, you lost.\nPlease try again.".toUpperCase(),
-              style: AppTextStyles.ls12,
+              style: AppTextStyles.ls12.copyWith(fontSize: 12.r),
               textAlign: TextAlign.center,
             ),
             SizedBox(height: 11.h),

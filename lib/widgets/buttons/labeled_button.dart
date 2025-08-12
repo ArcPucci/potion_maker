@@ -36,7 +36,7 @@ class LabeledButton extends StatelessWidget {
           CustomBorderedText(
             text: label,
             strokeWidth: 1.9.sp,
-            textStyle: textStyle ?? AppTextStyles.ls24,
+            textStyle: textStyle ?? AppTextStyles.ls24.copyWith(fontSize: 24.r),
             strokeColor: AppTheme.darkOrange1,
           ),
         ],

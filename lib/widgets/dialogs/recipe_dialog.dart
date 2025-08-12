@@ -81,6 +81,7 @@ class _RecipeDialogState extends State<RecipeDialog> {
                                   strokeColor: AppTheme.green2,
                                   textStyle: AppTextStyles.ls24.copyWith(
                                     letterSpacing: 0,
+                                    fontSize: 24.r,
                                   ),
                                 ),
                               ),
@@ -124,7 +125,9 @@ class _RecipeDialogState extends State<RecipeDialog> {
                                 alignment: Alignment.center,
                                 child: Text(
                                   "${index + 1}",
-                                  style: AppTextStyles.lo15,
+                                  style: AppTextStyles.lo15.copyWith(
+                                    fontSize: 15.r,
+                                  ),
                                 ),
                               ),
                               SizedBox(width: 14.r),

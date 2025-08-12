@@ -32,7 +32,7 @@ class StoneCupWidget extends StatelessWidget {
               bottom: 0,
               child: LabeledButton(
                 label: "TO GRIND",
-                textStyle: AppTextStyles.ls20,
+                textStyle: AppTextStyles.ls20.copyWith(fontSize: 20.r),
                 onTap: onGrind,
               ),
             ),

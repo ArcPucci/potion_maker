@@ -140,7 +140,7 @@ class BedWidget extends StatelessWidget {
                     CustomBorderedText(
                       text: time,
                       strokeWidth: 1.sp,
-                      textStyle: AppTextStyles.ls11,
+                      textStyle: AppTextStyles.ls11.copyWith(fontSize: 11.r),
                       strokeColor: AppTheme.darkOrange1,
                     ),
                   ],
@@ -163,7 +163,7 @@ class BedWidget extends StatelessWidget {
 
       return LabeledButton(
         label: "TO PLANT",
-        textStyle: AppTextStyles.ls11,
+        textStyle: AppTextStyles.ls11.copyWith(fontSize: 11.r),
         width: 64.r,
         height: 26.r,
         onTap: onSelect,

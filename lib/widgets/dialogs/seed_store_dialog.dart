@@ -108,8 +108,11 @@ class SeedStoreDialog extends StatelessWidget {
                                                           width: 62.r,
                                                           height: 29.r,
                                                           textStyle:
-                                                              AppTextStyles
-                                                                  .ls14,
+                                                              AppTextStyles.ls14
+                                                                  .copyWith(
+                                                                    fontSize:
+                                                                        14.r,
+                                                                  ),
                                                           onTap: () {
                                                             if (isBought)
                                                               return;
@@ -152,7 +155,12 @@ class SeedStoreDialog extends StatelessWidget {
                                 end: Alignment.bottomCenter,
                               ).createShader(bounds);
                             },
-                            child: Text("INFO", style: AppTextStyles.ls36),
+                            child: Text(
+                              "INFO",
+                              style: AppTextStyles.ls36.copyWith(
+                                fontSize: 36.r,
+                              ),
+                            ),
                           ),
                         ),
                       ],

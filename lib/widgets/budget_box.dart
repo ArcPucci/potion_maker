@@ -12,11 +12,13 @@ class BudgetBox extends StatelessWidget {
     this.hasPlus = true,
     this.budget,
     this.hasSymbol = false,
+    this.onTapPlus,
   });
 
   final bool hasSymbol;
   final bool hasPlus;
   final int? budget;
+  final VoidCallback? onTapPlus;
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +64,7 @@ class BudgetBox extends StatelessWidget {
                               : ""}${budget?.toString()}"
                         : '${controller.coins}',
                     strokeWidth: 1.9.sp,
-                    textStyle: AppTextStyles.ls18,
+                    textStyle: AppTextStyles.ls18.copyWith(fontSize: 18.r),
                     strokeColor: AppTheme.darkOrange1,
                   ),
                 );
@@ -82,7 +84,13 @@ class BudgetBox extends StatelessWidget {
             Positioned(
               right: 0,
               child: GestureDetector(
-                onTap: () => showShopDialog(context),
+                onTap: () {
+                  if(onTapPlus != null) {
+                    onTapPlus?.call();
+                    return;
+                  }
+                  showShopDialog(context);
+                },
                 child: Image.asset(
                   'assets/png/add.png',
                   width: 20.r,

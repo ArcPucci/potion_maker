@@ -51,7 +51,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     width: 190.r,
                     child: Text(
                       'In the Realm of Eternal Ember and Twilight, hidden from human eyes, stood an ancient school of wizards. It was famous throughout the magical world for its legendary potions and rare herbs grown in enchanted greenhouses. Here, the secrets of nature were intertwined with magic, and the pages of ancient books held the power to change fate. In this school, one beautiful sorceress with red hair, Kate, studied and took orders for potions.',
-                      style: AppTextStyles.lo11,
+                      style: AppTextStyles.lo11.copyWith(fontSize: 11.r),
                     ),
                   ),
                 ),
@@ -93,7 +93,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   width: 190.r,
                   child: Text(
                     'To brew potions, she grew a multitude of magical plants in her greenhouse — it was her little, enchanting garden, full of magic and mysteries. Every morning she filled her basket with fragrant herbs and magical flowers, to then brew potions that spread throughout the kingdom, bringing help and healing to the people.',
-                    style: AppTextStyles.lo11,
+                    style: AppTextStyles.lo11.copyWith(fontSize: 11.r),
                   ),
                 ),
                 Positioned(
@@ -136,7 +136,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     width: 190.r,
                     child: Text(
                       'One of the most important places in her home was the recipe library — a spacious room where the dust of ages mingled with the scent of ancient herbs. Here lived books, scrolls, and notes collected over hundreds of years of magical knowledge. The shelves could barely hold the weight of volumes overflowing with spells, and on every page, a living magic seemed to pulse. The sorceress could spend hours flipping through the old pages in search of rare recipes and forgotten incantations.',
-                      style: AppTextStyles.lo11,
+                      style: AppTextStyles.lo11.copyWith(fontSize: 11.r),
                     ),
                   ),
                 ),
@@ -178,7 +178,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     child: Text(
                       """Day by day, she gathered magical herbs and flowers in a basket to brew potions that spread across the kingdom, bringing help and hope to the people. But rumors of her talents spread far and wide, orders increased, and the sorceress could no longer manage alone. 
 Now she needs your help. Become her apprentice: collect rare plants, study recipes, and brew potions alongside her. Ready? Click start and open the path to the world of magic.""",
-                      style: AppTextStyles.lo11,
+                      style: AppTextStyles.lo11.copyWith(fontSize: 11.r),
                     ),
                   ),
                 ),
