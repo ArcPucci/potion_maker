@@ -141,12 +141,15 @@ class PotionMakerController extends GetxController {
     _status = GameStatus.paused;
     _timer?.cancel();
     update();
+    print('paused');
   }
 
   void resumeGame() {
     _status = GameStatus.playing;
     _timer?.cancel();
     update();
+
+    print('resumed');
 
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (_status != GameStatus.playing) return;

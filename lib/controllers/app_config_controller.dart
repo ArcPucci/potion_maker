@@ -18,6 +18,8 @@ class AppConfigController extends GetxController {
 
   List<String> get availableRecipes => _availableRecipes;
 
+  bool get firstInit => _appConfigRepository.isFirstInit();
+
   void initController() {
     musicValue.value = _appConfigRepository.getMusic();
     soundValue.value = _appConfigRepository.getSound();
@@ -46,5 +48,9 @@ class AppConfigController extends GetxController {
     _availableRecipes.add(potion.asset);
     await _appConfigRepository.setAvailableRecipes(_availableRecipes);
     update();
+  }
+
+  void setFirstInit() async {
+    await _appConfigRepository.setFirstInit();
   }
 }

@@ -17,6 +17,15 @@ class AppConfigRepository {
   static const _bedsConfigKey = "BEDS_CONFIG_KEY";
   static const _rippedFlowersKey = "RIPPED_FLOWERS_KEY";
   static const _boughtCrystalsKey = "BOUGHT_CRYSTALS_KEY";
+  static const _firstInitKey = "FIRST_INIT_KEY";
+
+  Future<void> setFirstInit() async {
+    await _preferences.setBool(_firstInitKey, false);
+  }
+
+  bool isFirstInit() {
+    return _preferences.getBool(_firstInitKey) ?? true;
+  }
 
   Future<void> setBoughtCrystals(List<String> crystals) async {
     await _preferences.setStringList(_boughtCrystalsKey, crystals);

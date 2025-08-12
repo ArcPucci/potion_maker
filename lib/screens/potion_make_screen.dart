@@ -10,19 +10,35 @@ import 'package:potion_maker/utils/utils.dart';
 
 import '../widgets/widgets.dart';
 
-class PotionMakeScreen extends StatelessWidget {
+class PotionMakeScreen extends StatefulWidget {
   const PotionMakeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    Get.put(
-      PotionMakerController(
-        (won, correct, wrong, sum) =>
-            showResultDialog(context, won, correct, wrong, sum),
-        Get.find(),
-        Get.find(),
-      ),
+  State<PotionMakeScreen> createState() => _PotionMakeScreenState();
+}
+
+class _PotionMakeScreenState extends State<PotionMakeScreen> {
+  late final PotionMakerController controller;
+  late final AppConfigController appConfigController;
+
+  @override
+  void initState() {
+    super.initState();
+    appConfigController = Get.find();
+    controller = Get.put(
+      PotionMakerController(showResultDialog, Get.find(), appConfigController),
     );
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      if (appConfigController.firstInit) {
+        appConfigController.setFirstInit();
+        showInfoDialog(false);
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return PopScope(
       canPop: false,
       child: Material(
@@ -113,7 +129,7 @@ class PotionMakeScreen extends StatelessWidget {
                             onTap: playing
                                 ? () async {
                                     controller.pauseGame();
-                                    await showRecipesDialog(context);
+                                    await showRecipesDialog();
                                     controller.resumeGame();
                                   }
                                 : null,
@@ -122,7 +138,7 @@ class PotionMakeScreen extends StatelessWidget {
                             onTapPlus: playing
                                 ? () async {
                                     controller.pauseGame();
-                                    await showCoinsDialog(context);
+                                    await showCoinsDialog();
                                     controller.resumeGame();
                                   }
                                 : null,
@@ -133,14 +149,21 @@ class PotionMakeScreen extends StatelessWidget {
                                 ? null
                                 : () async {
                                     controller.pauseGame();
-                                    await showMenuDialog(context);
+                                    await showMenuDialog();
                                     controller.resumeGame();
                                   },
                           ),
                         ],
                       ),
                       GestureDetector(
-                        onTap: () {},
+                        onTap: playing
+                            ? () async {
+                                controller.pauseGame();
+                                if (await showInfoDialog(true)) {
+                                  controller.resumeGame();
+                                }
+                              }
+                            : () => showInfoDialog(false),
                         child: Image.asset(
                           'assets/png/info.png',
                           width: 60.r,
@@ -280,7 +303,7 @@ class PotionMakeScreen extends StatelessWidget {
               crystal: crystal,
               onBuy: () async {
                 controller.pauseGame();
-                await showCrystalDialog(context, crystal);
+                await showCrystalDialog(crystal);
                 controller.resumeGame();
               },
             ),
@@ -483,13 +506,7 @@ class PotionMakeScreen extends StatelessWidget {
     );
   }
 
-  void showResultDialog(
-    BuildContext context,
-    bool? won,
-    int correct,
-    int wrong,
-    int sum,
-  ) {
+  void showResultDialog(bool? won, int correct, int wrong, int sum) {
     showDialog(
       context: context,
       useSafeArea: false,
@@ -504,7 +521,7 @@ class PotionMakeScreen extends StatelessWidget {
     );
   }
 
-  Future<void> showCrystalDialog(BuildContext context, crystalModel) async {
+  Future<void> showCrystalDialog(crystalModel) async {
     await showDialog(
       context: context,
       useSafeArea: false,
@@ -513,7 +530,7 @@ class PotionMakeScreen extends StatelessWidget {
     );
   }
 
-  Future<void> showMenuDialog(context) async {
+  Future<void> showMenuDialog() async {
     await showDialog(
       context: context,
       useSafeArea: false,
@@ -522,7 +539,7 @@ class PotionMakeScreen extends StatelessWidget {
     );
   }
 
-  Future<void> showCoinsDialog(context) async {
+  Future<void> showCoinsDialog() async {
     await showDialog(
       context: context,
       useSafeArea: false,
@@ -531,12 +548,40 @@ class PotionMakeScreen extends StatelessWidget {
     );
   }
 
-  Future<void> showRecipesDialog(context) async {
+  Future<void> showRecipesDialog() async {
     await showDialog(
       context: context,
       useSafeArea: false,
       barrierColor: Colors.black.withAlpha(16),
       builder: (context) => ShelfDialog(),
+    );
+  }
+
+  Future<bool> showInfoDialog(bool playing) async {
+    return await showDialog(
+      context: context,
+      useSafeArea: false,
+      barrierColor: Colors.black.withAlpha(16),
+      builder: (context) => PotionMakerInfoDialog(
+        playing: playing,
+        onTraining: playing
+            ? () async {
+                controller.pauseGame();
+                await showTrainingDialog();
+                controller.resumeGame();
+              }
+            : showTrainingDialog,
+        onStart: () {},
+      ),
+    );
+  }
+
+  Future<void> showTrainingDialog() async {
+    await showDialog(
+      context: context,
+      useSafeArea: false,
+      barrierColor: Colors.black.withAlpha(16),
+      builder: (context) => TrainingDialog(),
     );
   }
 
