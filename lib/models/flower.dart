@@ -2,12 +2,14 @@ import 'package:potion_maker/models/models.dart';
 
 abstract class Flower extends Ingredient {
   final bool ripe;
+  final String bigAsset;
   final List<String> states;
   final int price;
 
   Flower({
     required super.name,
     required super.asset,
+    required this.bigAsset,
     required this.ripe,
     required this.states,
     this.price = 0,
@@ -19,6 +21,7 @@ class Flower1 extends Flower {
     super.name = "Flower1",
     super.asset = "assets/png/flowers/flower1.png",
     super.ripe = true,
+    super.bigAsset = "assets/png/flowers/big_flower1.png",
   }) : super(states: []);
 }
 
@@ -26,6 +29,7 @@ class Flower2 extends Flower {
   Flower2({
     super.name = "Flower2",
     super.asset = "assets/png/flowers/flower2.png",
+    super.bigAsset = "assets/png/flowers/big_flower2.png",
     super.ripe = true,
   }) : super(states: []);
 }
@@ -34,6 +38,7 @@ class Flower3 extends Flower {
   Flower3({
     super.name = "Flower3",
     super.asset = "assets/png/flowers/flower3.png",
+    super.bigAsset = "assets/png/flowers/big_flower3.png",
     super.ripe = true,
   }) : super(states: []);
 }
@@ -41,7 +46,8 @@ class Flower3 extends Flower {
 class Flower4 extends Flower {
   Flower4({
     super.name = "Flower4",
-    super.asset = "assets/png/flowers/flower4_3.png",
+    super.asset = "assets/png/flowers/flower4.png",
+    super.bigAsset = "assets/png/flowers/big_flower4.png",
     super.ripe = true,
     super.price = 300,
   }) : super(
@@ -56,7 +62,8 @@ class Flower4 extends Flower {
 class Flower5 extends Flower {
   Flower5({
     super.name = "Flower5",
-    super.asset = "assets/png/flowers/flower5_3.png",
+    super.asset = "assets/png/flowers/flower5.png",
+    super.bigAsset = "assets/png/flowers/big_flower5.png",
     super.ripe = true,
     super.price = 500,
   }) : super(
@@ -71,7 +78,8 @@ class Flower5 extends Flower {
 class Flower6 extends Flower {
   Flower6({
     super.name = "Flower6",
-    super.asset = "assets/png/flowers/flower6_3.png",
+    super.asset = "assets/png/flowers/flower6.png",
+    super.bigAsset = "assets/png/flowers/big_flower6.png",
     super.ripe = true,
     super.price = 200,
   }) : super(

@@ -1,6 +1,6 @@
 import 'package:potion_maker/models/models.dart';
 
-class RecipeRepository {
+class RecipesRepository {
   static final List<Potion> potionsList = [
     Potion(
       name: 'Root of Luck',

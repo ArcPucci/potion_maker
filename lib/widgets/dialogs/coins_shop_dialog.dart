@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:potion_maker/repositories/repositories.dart';
 import 'package:potion_maker/widgets/widgets.dart';
 
 import '../../utils/utils.dart';
@@ -76,7 +77,7 @@ class _CoinsShopDialogState extends State<CoinsShopDialog> {
                           bottom: 65.r,
                           child: GridView.builder(
                             controller: controller,
-                            itemCount: 4,
+                            itemCount: ShopRepo.coinsList.length,
                             physics: ClampingScrollPhysics(),
                             gridDelegate:
                                 SliverGridDelegateWithFixedCrossAxisCount(
@@ -86,7 +87,8 @@ class _CoinsShopDialogState extends State<CoinsShopDialog> {
                                   crossAxisSpacing: 22.r,
                                 ),
                             itemBuilder: (context, index) {
-                              return CoinCard();
+                              final coin = ShopRepo.coinsList[index];
+                              return CoinCard(coinsModel: coin);
                             },
                           ),
                         ),

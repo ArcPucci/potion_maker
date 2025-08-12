@@ -8,7 +8,7 @@ import 'package:potion_maker/widgets/widgets.dart';
 class GreenhouseScreen extends StatelessWidget {
   GreenhouseScreen({super.key});
 
-  final _greenhouseController = GreenhouseController(Get.find());
+  final _greenhouseController = GreenhouseController(Get.find(), Get.find());
 
   @override
   Widget build(BuildContext context) {
@@ -120,14 +120,15 @@ class GreenhouseScreen extends StatelessWidget {
                         flower: bedModel.flowerModel?.flower,
                         riped: bedModel.flowerModel?.riped ?? false,
                         secondsToRipe: bedModel.flowerModel?.secondsToRipe ?? 0,
+                        controller: bedModel.controller,
                         onSelect: () {
-                          controller.selectBed(bed);
+                          controller.selectBed(index);
                           showSeedsDialog(context);
                         },
                         onBuy: () => showBedShopDialog(
                           context,
                           bed.price,
-                          () => controller.buyBed(bed),
+                          () => controller.buyBed(index),
                         ),
                       ),
                     );

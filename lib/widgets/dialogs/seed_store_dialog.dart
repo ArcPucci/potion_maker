@@ -55,6 +55,8 @@ class SeedStoreDialog extends StatelessWidget {
                                         GreenhouseRepository.shopFlowers[index];
                                     final isBought = controller.availableFlowers
                                         .contains(flower.asset);
+                                    final canBuy =
+                                        controller.coins >= flower.price;
                                     return Column(
                                       children: [
                                         Container(
@@ -90,35 +92,45 @@ class SeedStoreDialog extends StatelessWidget {
                                         SizedBox(height: 5.h),
                                         isBought
                                             ? SizedBox(height: 29.r)
-                                            : SizedBox(
-                                                width: 69.r,
-                                                height: 29.r,
-                                                child: Stack(
-                                                  alignment: Alignment.center,
-                                                  children: [
-                                                    Positioned(
-                                                      right: 0,
-                                                      child: LabeledButton(
-                                                        label: flower.price
-                                                            .toString(),
-                                                        width: 62.r,
-                                                        height: 29.r,
-                                                        textStyle:
-                                                            AppTextStyles.ls14,
-                                                        onTap: () => controller
-                                                            .buyFlower(flower),
+                                            : Opacity(
+                                                opacity: canBuy ? 1 : 0.5,
+                                                child: SizedBox(
+                                                  width: 69.r,
+                                                  height: 29.r,
+                                                  child: Stack(
+                                                    alignment: Alignment.center,
+                                                    children: [
+                                                      Positioned(
+                                                        right: 0,
+                                                        child: LabeledButton(
+                                                          label: flower.price
+                                                              .toString(),
+                                                          width: 62.r,
+                                                          height: 29.r,
+                                                          textStyle:
+                                                              AppTextStyles
+                                                                  .ls14,
+                                                          onTap: () {
+                                                            if (isBought)
+                                                              return;
+                                                            controller
+                                                                .buyFlower(
+                                                                  flower,
+                                                                );
+                                                          },
+                                                        ),
                                                       ),
-                                                    ),
-                                                    Positioned(
-                                                      left: 0,
-                                                      child: Image.asset(
-                                                        'assets/png/cent.png',
-                                                        width: 23.r,
-                                                        height: 23.r,
-                                                        fit: BoxFit.fill,
+                                                      Positioned(
+                                                        left: 0,
+                                                        child: Image.asset(
+                                                          'assets/png/cent.png',
+                                                          width: 23.r,
+                                                          height: 23.r,
+                                                          fit: BoxFit.fill,
+                                                        ),
                                                       ),
-                                                    ),
-                                                  ],
+                                                    ],
+                                                  ),
                                                 ),
                                               ),
                                       ],

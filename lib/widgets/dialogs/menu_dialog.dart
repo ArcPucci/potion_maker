@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:potion_maker/controllers/controllers.dart';
 
 import '../../utils/utils.dart';
 import '../widgets.dart';
@@ -46,36 +48,40 @@ class MenuDialog extends StatelessWidget {
                     ),
                     Positioned(
                       top: 92.h,
-                      child: Column(
-                        children: [
-                          CustomBorderedText(
-                            text: "MUSIC",
-                            strokeWidth: 2.sp,
-                            strokeColor: AppTheme.darkOrange1,
-                            textStyle: AppTextStyles.ls16.copyWith(
-                              letterSpacing: 0,
-                            ),
-                          ),
-                          SizedBox(height: 5.h),
-                          CustomSwitchBox(
-                            initialValue: true,
-                            onChanged: (value) {},
-                          ),
-                          SizedBox(height: 23.h),
-                          CustomBorderedText(
-                            text: "SOUNDS",
-                            strokeWidth: 2.sp,
-                            strokeColor: AppTheme.darkOrange1,
-                            textStyle: AppTextStyles.ls16.copyWith(
-                              letterSpacing: 0,
-                            ),
-                          ),
-                          SizedBox(height: 5.h),
-                          CustomSwitchBox(
-                            initialValue: true,
-                            onChanged: (value) {},
-                          ),
-                        ],
+                      child: GetBuilder<AppConfigController>(
+                        builder: (controller) {
+                          return Column(
+                            children: [
+                              CustomBorderedText(
+                                text: "MUSIC",
+                                strokeWidth: 2.sp,
+                                strokeColor: AppTheme.darkOrange1,
+                                textStyle: AppTextStyles.ls16.copyWith(
+                                  letterSpacing: 0,
+                                ),
+                              ),
+                              SizedBox(height: 5.h),
+                              CustomSwitchBox(
+                                initialValue: controller.musicValue.value,
+                                onChanged: controller.toggleMusic,
+                              ),
+                              SizedBox(height: 23.h),
+                              CustomBorderedText(
+                                text: "SOUNDS",
+                                strokeWidth: 2.sp,
+                                strokeColor: AppTheme.darkOrange1,
+                                textStyle: AppTextStyles.ls16.copyWith(
+                                  letterSpacing: 0,
+                                ),
+                              ),
+                              SizedBox(height: 5.h),
+                              CustomSwitchBox(
+                                initialValue: controller.soundValue.value,
+                                onChanged: controller.toggleSound,
+                              ),
+                            ],
+                          );
+                        },
                       ),
                     ),
                   ],

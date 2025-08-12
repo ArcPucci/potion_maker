@@ -6,7 +6,9 @@ import '../repositories/repositories.dart';
 class AppConfigController extends GetxController {
   final AppConfigRepository _appConfigRepository;
 
-  AppConfigController(this._appConfigRepository);
+  AppConfigController(this._appConfigRepository) {
+    initController();
+  }
 
   RxBool musicValue = true.obs;
   RxBool soundValue = true.obs;
@@ -23,21 +25,25 @@ class AppConfigController extends GetxController {
     _availableRecipes = _appConfigRepository.getAvailableRecipes();
   }
 
-  void toggleMusic(bool value) {
+  void toggleMusic(bool value) async {
     musicValue.value = value;
+    await _appConfigRepository.setMusic(value);
   }
 
-  void toggleSound(bool value) {
+  void toggleSound(bool value) async {
     soundValue.value = value;
+    await _appConfigRepository.setSound(value);
   }
 
-  void addCoins(int value) {
+  void addCoins(int value) async {
     coins.value += value;
-    _appConfigRepository.setCoins(coins.value);
+    await _appConfigRepository.setCoins(coins.value);
+    update();
   }
 
   void addRecipe(Potion potion) async {
-    _availableRecipes.add(potion.bookAsset);
+    if(_availableRecipes.contains(potion.asset)) return;
+    _availableRecipes.add(potion.asset);
     await _appConfigRepository.setAvailableRecipes(_availableRecipes);
     update();
   }

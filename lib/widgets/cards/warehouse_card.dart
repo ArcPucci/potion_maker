@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -39,9 +41,37 @@ class WarehouseCard extends StatelessWidget {
               final isBought = controller.availableFlowers.contains(
                 flower.asset,
               );
+              final bedModel = controller.beds.firstWhereOrNull(
+                (e) => e.flowerModel?.flower.asset == flower.asset,
+              );
+              final flowerModel = bedModel?.flowerModel;
               return Stack(
                 alignment: Alignment.center,
                 children: [
+                  if (flowerModel != null && flowerModel.controller != null)
+                    AnimatedBuilder(
+                      animation: flowerModel.controller!,
+                      builder: (BuildContext context, Widget? child) {
+                        final opacity = sin(flowerModel.controller!.value * pi);
+                        return Container(
+                          width: 31.r,
+                          height: 43.r,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(6),
+                            boxShadow: [
+                              BoxShadow(
+                                offset: Offset(0, -1),
+                                blurRadius: 7,
+                                spreadRadius: 5,
+                                color: Color(
+                                  0xFFFFD90B,
+                                ).withValues(alpha: opacity),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    ),
                   Opacity(
                     opacity: isBought ? 1 : 0.5,
                     child: Container(

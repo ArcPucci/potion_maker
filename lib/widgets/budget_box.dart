@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:potion_maker/widgets/widgets.dart';
 
+import '../controllers/controllers.dart';
 import '../utils/utils.dart';
 
 class BudgetBox extends StatelessWidget {
-  const BudgetBox({super.key, this.hasPlus = true, this.budget});
+  const BudgetBox({
+    super.key,
+    this.hasPlus = true,
+    this.budget,
+    this.hasSymbol = false,
+  });
 
+  final bool hasSymbol;
   final bool hasPlus;
   final int? budget;
 
@@ -41,14 +49,24 @@ class BudgetBox extends StatelessWidget {
           Positioned(
             left: 36.r,
             right: 20.r,
-            child: FittedBox(
-              fit: BoxFit.scaleDown,
-              child: CustomBorderedText(
-                text: budget?.toString() ?? '1000',
-                strokeWidth: 1.9.sp,
-                textStyle: AppTextStyles.ls18,
-                strokeColor: AppTheme.darkOrange1,
-              ),
+            child: GetBuilder<AppConfigController>(
+              builder: (controller) {
+                return FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: CustomBorderedText(
+                    text: budget != null
+                        ? "${hasSymbol
+                              ? budget! > 0
+                                    ? '+'
+                                    : '-'
+                              : ""}${budget?.toString()}"
+                        : '${controller.coins}',
+                    strokeWidth: 1.9.sp,
+                    textStyle: AppTextStyles.ls18,
+                    strokeColor: AppTheme.darkOrange1,
+                  ),
+                );
+              },
             ),
           ),
           Positioned(

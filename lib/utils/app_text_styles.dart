@@ -14,6 +14,13 @@ class AppTextStyles {
     color: AppTheme.black1.withValues(alpha: 0.8),
   );
 
+  static final TextStyle lo13 = TextStyle(
+    fontFamily: _lo,
+    fontSize: 13.r,
+    height: 1,
+    color: Colors.white,
+  );
+
   static final TextStyle lo15 = TextStyle(
     fontFamily: _lo,
     fontSize: 15.r,
@@ -91,6 +98,14 @@ class AppTextStyles {
     color: Colors.white,
   );
 
+  static final TextStyle ls28 = TextStyle(
+    fontFamily: _ls,
+    fontSize: 28.r,
+    fontWeight: FontWeight.w400,
+    letterSpacing: 2,
+    color: Colors.white,
+  );
+
   static final TextStyle ls36 = TextStyle(
     fontFamily: _ls,
     fontSize: 36.r,
@@ -109,6 +124,13 @@ class AppTextStyles {
   static final TextStyle ls40 = TextStyle(
     fontFamily: _ls,
     fontSize: 40.r,
+    fontWeight: FontWeight.w400,
+    color: Colors.white,
+  );
+
+  static final TextStyle ls96 = TextStyle(
+    fontFamily: _ls,
+    fontSize: 96.r,
     fontWeight: FontWeight.w400,
     color: Colors.white,
   );

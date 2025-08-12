@@ -6,3 +6,7 @@ export 'potion.dart';
 export 'recipe.dart';
 export 'flower_model.dart';
 export 'bed_model.dart';
+export 'coins_model.dart';
+export 'big_flower_model.dart';
+export 'crystal_model.dart';
+export 'ingredient_model.dart';

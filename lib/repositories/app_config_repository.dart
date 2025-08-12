@@ -15,13 +15,23 @@ class AppConfigRepository {
   static const _availableRecipesKey = "AVAILABLE_RECIPES_KEY";
   static const _availableBedsKey = "AVAILABLE_BEDS_KEY";
   static const _bedsConfigKey = "BEDS_CONFIG_KEY";
+  static const _rippedFlowersKey = "RIPPED_FLOWERS_KEY";
+  static const _boughtCrystalsKey = "BOUGHT_CRYSTALS_KEY";
+
+  Future<void> setBoughtCrystals(List<String> crystals) async {
+    await _preferences.setStringList(_boughtCrystalsKey, crystals);
+  }
+
+  List<String> getBoughtCrystals() {
+    return _preferences.getStringList(_boughtCrystalsKey) ?? [];
+  }
 
   Future<void> setCoins(int coins) async {
     await _preferences.setInt(_coinsKey, coins);
   }
 
   int getCoins() {
-    return _preferences.getInt(_coinsKey) ?? 50000;
+    return _preferences.getInt(_coinsKey) ?? 1000;
   }
 
   Future<void> setSound(bool sound) async {
@@ -64,17 +74,25 @@ class AppConfigRepository {
         ];
   }
 
+  Future<void> setRippedFlowers(List<String> flowers) async {
+    await _preferences.setStringList(_rippedFlowersKey, flowers);
+  }
+
+  List<String> getRippedFlowers() {
+    return _preferences.getStringList(_rippedFlowersKey) ??
+        [
+          "assets/png/flowers/flower1.png",
+          "assets/png/flowers/flower2.png",
+          "assets/png/flowers/flower3.png",
+        ];
+  }
+
   Future<void> setAvailableRecipes(List<String> recipes) async {
     await _preferences.setStringList(_availableRecipesKey, recipes);
   }
 
   List<String> getAvailableRecipes() {
-    return _preferences.getStringList(_availableRecipesKey) ??
-        [
-          "assets/png/books/root_of_luck.png",
-          "assets/png/books/mist_drop.png",
-          "assets/png/books/petal_brew.png",
-        ];
+    return _preferences.getStringList(_availableRecipesKey) ?? [];
   }
 
   Future<void> setBedsConfig(Map<int, String> bedsConfig) async {
@@ -97,9 +115,7 @@ class AppConfigRepository {
       }
       final Map<String, dynamic> map = jsonDecode(json);
       return Map<int, String>.fromEntries(
-        map.entries.map(
-              (e) => MapEntry(int.parse(e.key), e.value as String),
-        ),
+        map.entries.map((e) => MapEntry(int.parse(e.key), e.value as String)),
       );
     } catch (e, stack) {
       debugPrint('Error reading bedsConfig: $e\n$stack');
@@ -116,12 +132,20 @@ class AppConfigRepository {
     5: 'assets/png/flowers/flower2.png',
   };
 
-  Future<void> updateFlower(String asset, DateTime date, bool riped) async {
+  Future<void> updateFlower(
+    String asset,
+    DateTime date,
+    bool riped,
+    bool showed,
+  ) async {
     final dateInMicroSeconds = date.microsecondsSinceEpoch;
-    await _preferences.setString(asset, "$dateInMicroSeconds,${riped ? 1 : 0}");
+    await _preferences.setString(
+      asset,
+      "$dateInMicroSeconds,${riped ? 1 : 0},${showed ? 1 : 0}",
+    );
   }
 
   String getFlowerInfo(String asset) {
-    return _preferences.getString(asset) ?? "-1,1";
+    return _preferences.getString(asset) ?? "-1,1,0";
   }
 }

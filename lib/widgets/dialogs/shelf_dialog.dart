@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:potion_maker/controllers/controllers.dart';
 import 'package:potion_maker/widgets/widgets.dart';
 
 import '../../repositories/repositories.dart';
@@ -54,34 +56,44 @@ class ShelfDialog extends StatelessWidget {
                           left: 53.r,
                           right: 53.r,
                           bottom: 36.r,
-                          child: GridView.builder(
-                            itemCount: RecipeRepository.potionsList.length,
-                            shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 4,
-                                  mainAxisExtent: 85.r,
-                                  crossAxisSpacing: 40.r,
-                                ),
-                            itemBuilder: (context, index) {
-                              final potion =
-                                  RecipeRepository.potionsList[index];
-                              return Column(
-                                children: [
-                                  RecipeBookCard(
-                                    name: potion.name,
-                                    asset: potion.bookAsset,
-                                  ),
-                                  LabeledButton(
-                                    label: "OPEN",
-                                    width: 55.r,
-                                    height: 20.r,
-                                    textStyle: AppTextStyles.ls11,
-                                    onTap: () =>
-                                        showRecipeDialog(context, potion),
-                                  ),
-                                ],
+                          child: GetBuilder<AppConfigController>(
+                            builder: (controller) {
+                              print(controller.availableRecipes);
+                              return GridView.builder(
+                                itemCount: RecipesRepository.potionsList.length,
+                                shrinkWrap: true,
+                                physics: NeverScrollableScrollPhysics(),
+                                gridDelegate:
+                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 4,
+                                      mainAxisExtent: 85.r,
+                                      crossAxisSpacing: 40.r,
+                                    ),
+                                itemBuilder: (context, index) {
+                                  final potion =
+                                      RecipesRepository.potionsList[index];
+                                  final isAvailable = controller
+                                      .availableRecipes
+                                      .contains(potion.asset);
+                                  return Column(
+                                    children: [
+                                      RecipeBookCard(
+                                        name: potion.name,
+                                        asset: potion.bookAsset,
+                                        isAvailable: isAvailable,
+                                      ),
+                                      if (isAvailable)
+                                        LabeledButton(
+                                          label: "OPEN",
+                                          width: 55.r,
+                                          height: 20.r,
+                                          textStyle: AppTextStyles.ls11,
+                                          onTap: () =>
+                                              showRecipeDialog(context, potion),
+                                        ),
+                                    ],
+                                  );
+                                },
                               );
                             },
                           ),

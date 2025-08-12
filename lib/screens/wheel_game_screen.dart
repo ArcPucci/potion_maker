@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:go_router/go_router.dart';
 import 'package:potion_maker/controllers/controllers.dart';
 import 'package:potion_maker/models/models.dart';
 import 'package:potion_maker/utils/utils.dart';
@@ -19,7 +18,9 @@ class WheelGameScreen extends StatefulWidget {
 }
 
 class _WheelGameScreenState extends State<WheelGameScreen> {
-  final controller = Get.put(PotionWheelController());
+  late final controller = Get.put(
+    PotionWheelController(Get.find(), showResult),
+  );
 
   @override
   void dispose() {
@@ -80,50 +81,73 @@ class _WheelGameScreenState extends State<WheelGameScreen> {
             child: SizedBox(
               width: 302.r,
               height: 50.r,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  LabeledButton(
-                    label: "MAX BET",
-                    width: 92.r,
-                    height: 50.r,
-                    textStyle: AppTextStyles.ls17,
+              child: Obx(() {
+                return Opacity(
+                  opacity: controller.isSpinning.value ? 0.5 : 1,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      LabeledButton(
+                        label: "MAX BET",
+                        width: 92.r,
+                        height: 50.r,
+                        textStyle: AppTextStyles.ls17,
+                        onTap: controller.maxBet,
+                      ),
+                      BetBox(
+                        bet: controller.currentBet.value,
+                        onIncrease: controller.increaseBet,
+                        onDecrease: controller.decreaseBet,
+                      ),
+                      Opacity(
+                        opacity: controller.canSpin ? 1 : 0.5,
+                        child: LabeledButton(
+                          label: "SPIN",
+                          width: 92.r,
+                          height: 50.r,
+                          textStyle: AppTextStyles.ls17,
+                          onTap: controller.spinWheel,
+                        ),
+                      ),
+                    ],
                   ),
-                  BetBox(),
-                  LabeledButton(
-                    label: "SPIN",
-                    width: 92.r,
-                    height: 50.r,
-                    textStyle: AppTextStyles.ls17,
-                    onTap: controller.spinWheel,
-                  ),
-                ],
-              ),
+                );
+              }),
             ),
           ),
           Positioned(
             top: 69.h,
             left: 29.w,
-            child: BooksShelf(
-              types: [PotionType.normal, PotionType.common],
-              potions1: RecipeRepository.normalPotions,
-              potions2: RecipeRepository.commonPotions,
+            child: GetBuilder<AppConfigController>(
+              builder: (controller) {
+                return BooksShelf(
+                  types: [PotionType.normal, PotionType.common],
+                  potions1: RecipesRepository.normalPotions,
+                  potions2: RecipesRepository.commonPotions,
+                  availableRecipes: controller.availableRecipes,
+                );
+              },
             ),
           ),
           Positioned(
             top: 69.h,
             right: 65.w,
-            child: BooksShelf(
-              types: [PotionType.rare, PotionType.veryRare],
-              potions1: RecipeRepository.rarePotions,
-              potions2: RecipeRepository.veryRarePotions,
+            child: GetBuilder<AppConfigController>(
+              builder: (controller) {
+                return BooksShelf(
+                  types: [PotionType.rare, PotionType.veryRare],
+                  potions1: RecipesRepository.rarePotions,
+                  potions2: RecipesRepository.veryRarePotions,
+                  availableRecipes: controller.availableRecipes,
+                );
+              },
             ),
           ),
           Positioned(
             top: 19.h,
             left: 30.w,
             child: GestureDetector(
-              onTap: context.pop,
+              onTap: Get.back,
               child: Image.asset(
                 'assets/png/back.png',
                 width: 81.r,
@@ -147,7 +171,7 @@ class _WheelGameScreenState extends State<WheelGameScreen> {
                   ],
                 ),
                 GestureDetector(
-                  onTap: () => showInfoDialog(context),
+                  onTap: showInfoDialog,
                   child: Image.asset(
                     'assets/png/info.png',
                     width: 60.r,
@@ -163,17 +187,20 @@ class _WheelGameScreenState extends State<WheelGameScreen> {
     );
   }
 
-  void showResult(context, potion) {
+  void showResult(Potion? potion, int loss) {
     showDialog(
       context: context,
       useSafeArea: false,
       barrierColor: Colors.black.withAlpha(16),
-      builder: (context) =>
-          WheelResultDialog(onOpen: () => showRecipeDialog(context, potion)),
+      builder: (context) => WheelResultDialog(
+        potion: potion,
+        loss: loss,
+        onOpen: () => showRecipeDialog(potion),
+      ),
     );
   }
 
-  void showRecipeDialog(context, potion) {
+  void showRecipeDialog(potion) {
     showDialog(
       context: context,
       useSafeArea: false,
@@ -182,7 +209,7 @@ class _WheelGameScreenState extends State<WheelGameScreen> {
     );
   }
 
-  void showInfoDialog(context) {
+  void showInfoDialog() {
     showDialog(
       context: context,
       useSafeArea: false,

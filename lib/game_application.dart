@@ -1,19 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:potion_maker/screens/main_screen.dart';
 
-import 'app_router.dart';
-
-class GameApplication extends StatefulWidget {
+class GameApplication extends StatelessWidget {
   const GameApplication({super.key});
 
   @override
-  State<GameApplication> createState() => _GameApplicationState();
-}
-
-class _GameApplicationState extends State<GameApplication> {
-  final AppRouter appRouter = AppRouter();
-
-  @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(routerConfig: appRouter.router);
+    return GetMaterialApp(home: MainScreen());
   }
 }

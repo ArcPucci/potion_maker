@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
+import 'package:get/get.dart';
+import 'package:potion_maker/screens/screens.dart';
 import 'package:potion_maker/utils/utils.dart';
 import 'package:potion_maker/widgets/widgets.dart';
 
@@ -29,6 +30,7 @@ class MainScreen extends StatelessWidget {
                   child: LabeledButton(
                     label: 'GAME',
                     textStyle: AppTextStyles.ls20,
+                    onTap: () => Get.to(() => PotionMakeScreen()),
                   ),
                 ),
               ],
@@ -62,14 +64,14 @@ class MainScreen extends StatelessWidget {
               textStyle: AppTextStyles.ls16,
               width: 132.r,
               height: 43.r,
-              onTap: () => context.go('/garden'),
+              onTap: () => Get.to(() => GreenhouseScreen()),
             ),
           ),
           Positioned(
             top: 96.h,
             right: 107.w,
             child: GestureDetector(
-              onTap: () => context.go('/wheel'),
+              onTap: () => Get.to(() => WheelGameScreen()),
               child: Stack(
                 children: [
                   Image.asset(

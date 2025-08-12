@@ -5,7 +5,16 @@ import '../utils/utils.dart';
 import 'custom_bordered_text.dart';
 
 class BetBox extends StatelessWidget {
-  const BetBox({super.key});
+  const BetBox({
+    super.key,
+    required this.bet,
+    this.onIncrease,
+    this.onDecrease,
+  });
+
+  final int bet;
+  final VoidCallback? onIncrease;
+  final VoidCallback? onDecrease;
 
   @override
   Widget build(BuildContext context) {
@@ -28,26 +37,32 @@ class BetBox extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 10.r),
       child: Row(
         children: [
-          Image.asset(
-            'assets/png/decrease.png',
-            width: 11.r,
-            fit: BoxFit.fitWidth,
+          GestureDetector(
+            onTap: onDecrease,
+            child: Image.asset(
+              'assets/png/decrease.png',
+              width: 11.r,
+              fit: BoxFit.fitWidth,
+            ),
           ),
           Expanded(
             child: FittedBox(
               fit: BoxFit.scaleDown,
               child: CustomBorderedText(
-                text: '0',
+                text: '$bet',
                 strokeWidth: 1.sp,
                 strokeColor: AppTheme.darkOrange2,
                 textStyle: AppTextStyles.ls18,
               ),
             ),
           ),
-          Image.asset(
-            'assets/png/increase.png',
-            width: 13.r,
-            fit: BoxFit.fitWidth,
+          GestureDetector(
+            onTap: onIncrease,
+            child: Image.asset(
+              'assets/png/increase.png',
+              width: 13.r,
+              fit: BoxFit.fitWidth,
+            ),
           ),
         ],
       ),

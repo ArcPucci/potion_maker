@@ -4,11 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:potion_maker/widgets/widgets.dart';
 
+import '../../models/models.dart';
 import '../../utils/utils.dart';
 
 class WheelResultDialog extends StatelessWidget {
-  const WheelResultDialog({super.key, this.onOpen});
+  const WheelResultDialog({
+    super.key,
+    this.potion,
+    required this.loss,
+    this.onOpen,
+  });
 
+  final Potion? potion;
+  final int loss;
   final VoidCallback? onOpen;
 
   @override
@@ -41,7 +49,7 @@ class WheelResultDialog extends StatelessWidget {
                             fit: BoxFit.fill,
                           ),
                         ),
-                        ..._getPositions(context, true),
+                        ..._getPositions(context, potion != null),
                       ],
                     ),
                   ),
@@ -80,10 +88,7 @@ class WheelResultDialog extends StatelessWidget {
         ),
         Positioned(
           top: 111.r,
-          child: RecipeBookCard(
-            name: '',
-            asset: 'assets/png/books/root_of_luck.png',
-          ),
+          child: RecipeBookCard(name: potion!.name, asset: potion!.bookAsset),
         ),
         Positioned(
           bottom: 0,
@@ -117,7 +122,7 @@ class WheelResultDialog extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             SizedBox(height: 11.h),
-            BudgetBox(hasPlus: false, budget: -100),
+            BudgetBox(hasPlus: false, budget: -loss),
           ],
         ),
       ),

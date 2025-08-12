@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:potion_maker/controllers/controllers.dart';
 import 'package:potion_maker/game_application.dart';
 import 'package:potion_maker/repositories/repositories.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -22,6 +23,7 @@ void main() {
       ]);
 
       Get.put(appConfigRepository);
+      Get.put(AppConfigController(appConfigRepository));
 
       runApp(
         ScreenUtilInit(

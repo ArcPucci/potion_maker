@@ -10,11 +10,13 @@ class BooksShelf extends StatelessWidget {
     required this.potions1,
     required this.potions2,
     required this.types,
+    required this.availableRecipes,
   });
 
   final List<PotionType> types;
   final List<Potion> potions1;
   final List<Potion> potions2;
+  final List<String> availableRecipes;
 
   @override
   Widget build(BuildContext context) {
@@ -57,9 +59,13 @@ class BooksShelf extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: List.generate(potions1.length, (index) {
                             final potion = potions1[index];
+                            final isAvailable = availableRecipes.contains(
+                              potion.asset,
+                            );
                             return RecipeBookCard(
                               name: potion.name,
                               asset: potion.bookAsset,
+                              isAvailable: isAvailable,
                             );
                           }),
                         ),
@@ -80,9 +86,13 @@ class BooksShelf extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: List.generate(potions2.length, (index) {
                             final potion = potions2[index];
+                            final isAvailable = availableRecipes.contains(
+                              potion.asset,
+                            );
                             return RecipeBookCard(
                               name: potion.name,
                               asset: potion.bookAsset,
+                              isAvailable: isAvailable,
                             );
                           }),
                         ),

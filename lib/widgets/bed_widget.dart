@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:potion_maker/models/models.dart';
@@ -14,6 +16,7 @@ class BedWidget extends StatelessWidget {
     this.onBuy,
     this.onSelect,
     this.secondsToRipe = 0,
+    this.controller,
   });
 
   final int price;
@@ -21,6 +24,7 @@ class BedWidget extends StatelessWidget {
   final bool isBought;
   final Flower? flower;
   final int secondsToRipe;
+  final AnimationController? controller;
   final VoidCallback? onBuy;
   final VoidCallback? onSelect;
 
@@ -38,6 +42,29 @@ class BedWidget extends StatelessWidget {
       child: Stack(
         alignment: Alignment.center,
         children: [
+          if (controller != null)
+            Positioned(
+              bottom: 0,
+              child: AnimatedBuilder(
+                animation: controller!,
+                builder: (BuildContext context, Widget? child) {
+                  final opacity = sin(controller!.value * pi);
+                  return Container(
+                    width: 127.r,
+                    height: 65.r,
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          offset: Offset(0, -1),
+                          blurRadius: 32,
+                          color: Color(0xFFFFD90B).withValues(alpha: opacity),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ),
           Positioned(
             bottom: 0,
             child: Image.asset(
