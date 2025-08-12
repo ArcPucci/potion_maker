@@ -18,6 +18,15 @@ class AppConfigRepository {
   static const _rippedFlowersKey = "RIPPED_FLOWERS_KEY";
   static const _boughtCrystalsKey = "BOUGHT_CRYSTALS_KEY";
   static const _firstInitKey = "FIRST_INIT_KEY";
+  static const _welcomeKey = "WELCOME_KEY";
+
+  Future<void> setWelcome() async {
+    await _preferences.setBool(_welcomeKey, true);
+  }
+
+  bool getWelcome() {
+    return _preferences.getBool(_welcomeKey) ?? false;
+  }
 
   Future<void> setFirstInit() async {
     await _preferences.setBool(_firstInitKey, false);

@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:potion_maker/models/models.dart';
 
 import '../repositories/repositories.dart';
@@ -10,6 +11,8 @@ class AppConfigController extends GetxController {
     initController();
   }
 
+  final AudioPlayer _player = AudioPlayer();
+
   RxBool musicValue = true.obs;
   RxBool soundValue = true.obs;
   RxInt coins = 500.obs;
@@ -20,16 +23,20 @@ class AppConfigController extends GetxController {
 
   bool get firstInit => _appConfigRepository.isFirstInit();
 
-  void initController() {
+  bool get welcome => _appConfigRepository.getWelcome();
+
+  void initController() async {
     musicValue.value = _appConfigRepository.getMusic();
     soundValue.value = _appConfigRepository.getSound();
     coins.value = _appConfigRepository.getCoins();
     _availableRecipes = _appConfigRepository.getAvailableRecipes();
+    if (musicValue.value) await _playMusic();
   }
 
   void toggleMusic(bool value) async {
     musicValue.value = value;
     await _appConfigRepository.setMusic(value);
+    value ? await _playMusic() : await _player.stop();
   }
 
   void toggleSound(bool value) async {
@@ -44,7 +51,7 @@ class AppConfigController extends GetxController {
   }
 
   void addRecipe(Potion potion) async {
-    if(_availableRecipes.contains(potion.asset)) return;
+    if (_availableRecipes.contains(potion.asset)) return;
     _availableRecipes.add(potion.asset);
     await _appConfigRepository.setAvailableRecipes(_availableRecipes);
     update();
@@ -52,5 +59,19 @@ class AppConfigController extends GetxController {
 
   void setFirstInit() async {
     await _appConfigRepository.setFirstInit();
+  }
+
+  void setWelcome() async {
+    await _appConfigRepository.setWelcome();
+  }
+
+  Future<void> _playMusic() async {
+    try {
+      await _player.setAsset('assets/audio/magic.mp3');
+      await _player.play();
+      _player.setLoopMode(LoopMode.all);
+    } catch (e) {
+      print(e);
+    }
   }
 }

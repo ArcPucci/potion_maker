@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:potion_maker/screens/main_screen.dart';
 import 'package:potion_maker/utils/utils.dart';
 import 'package:potion_maker/widgets/widgets.dart';
+
+import '../controllers/controllers.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
@@ -195,7 +199,10 @@ Now she needs your help. Become her apprentice: collect rare plants, study recip
   }
 
   void _nextPage() {
-    if(_pageIndex == 3) {
+    if (_pageIndex == 3) {
+      final configController = Get.find<AppConfigController>();
+      configController.setWelcome();
+      Get.offAll(() => const MainScreen());
       return;
     }
 
