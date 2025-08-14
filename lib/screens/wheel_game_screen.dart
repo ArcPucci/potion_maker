@@ -166,14 +166,27 @@ class _WheelGameScreenState extends State<WheelGameScreen> {
               children: [
                 Row(
                   children: [
-                    RecipesButton(),
-                    BudgetBox(),
+                    RecipesButton(
+                      onOpen: controller.pauseSpin,
+                      onClose: controller.resumeSpin,
+                    ),
+                    BudgetBox(
+                      onOpen: controller.pauseSpin,
+                      onClose: controller.resumeSpin,
+                    ),
                     SizedBox(width: 14.w),
-                    MenuButton(),
+                    MenuButton(
+                      onOpen: controller.pauseSpin,
+                      onClose: controller.resumeSpin,
+                    ),
                   ],
                 ),
                 GestureDetector(
-                  onTap: showInfoDialog,
+                  onTap: () async {
+                    controller.pauseSpin();
+                    await showInfoDialog();
+                    controller.resumeSpin();
+                  },
                   child: Image.asset(
                     'assets/png/info.png',
                     width: 60.r,
@@ -211,8 +224,8 @@ class _WheelGameScreenState extends State<WheelGameScreen> {
     );
   }
 
-  void showInfoDialog() {
-    showDialog(
+  Future<void> showInfoDialog() async {
+    await showDialog(
       context: context,
       useSafeArea: false,
       barrierColor: Colors.black.withAlpha(16),

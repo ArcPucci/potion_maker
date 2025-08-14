@@ -103,7 +103,15 @@ class _PotionMakeScreenState extends State<PotionMakeScreen> {
                   child: Row(
                     children: [
                       GestureDetector(
-                        onTap: Get.back,
+                        onTap: () async {
+                          if (controller.status == GameStatus.idle) {
+                            Get.back();
+                            return;
+                          }
+                          controller.pauseGame();
+                          await showLeaveDialog();
+                          controller.resumeGame();
+                        },
                         child: Image.asset(
                           'assets/png/back.png',
                           width: 81.r,
@@ -554,6 +562,15 @@ class _PotionMakeScreenState extends State<PotionMakeScreen> {
       useSafeArea: false,
       barrierColor: Colors.black.withAlpha(16),
       builder: (context) => ShelfDialog(),
+    );
+  }
+
+  Future<void> showLeaveDialog() async {
+    await showDialog(
+      context: context,
+      useSafeArea: false,
+      barrierColor: Colors.black.withAlpha(16),
+      builder: (context) => LeaveDialog(),
     );
   }
 

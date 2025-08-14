@@ -2,8 +2,10 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:potion_maker/widgets/widgets.dart';
 
+import '../../controllers/controllers.dart';
 import '../../utils/utils.dart';
 
 class BedShopDialog extends StatelessWidget {
@@ -14,6 +16,7 @@ class BedShopDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final coins = Get.find<AppConfigController>().coins;
     return BackdropFilter(
       filter: ImageFilter.blur(sigmaY: 5, sigmaX: 5),
       child: Material(
@@ -67,12 +70,15 @@ class BedShopDialog extends StatelessWidget {
                     ),
                     Positioned(
                       bottom: 2.sp,
-                      child: LabeledButton(
-                        label: "BUY",
-                        onTap: () {
-                          onBuy?.call();
-                          Navigator.of(context).pop();
-                        },
+                      child: Opacity(
+                        opacity: coins.value >= price ? 1 : 0.5,
+                        child: LabeledButton(
+                          label: "BUY",
+                          onTap: () {
+                            onBuy?.call();
+                            Navigator.of(context).pop();
+                          },
+                        ),
                       ),
                     ),
                   ],

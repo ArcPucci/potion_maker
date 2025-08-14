@@ -163,6 +163,7 @@ class PotionMakerController extends GetxController {
           wrong.length,
           _sum,
         );
+        _appConfigController.addCoins(_sum);
         _status = GameStatus.finished;
         _timer?.cancel();
       }
@@ -195,6 +196,7 @@ class PotionMakerController extends GetxController {
         wrong.length,
         _sum,
       );
+      _appConfigController.addCoins(_sum);
       _timer?.cancel();
       return;
     }

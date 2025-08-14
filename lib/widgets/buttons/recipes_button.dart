@@ -4,21 +4,32 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../dialogs/dialogs.dart';
 
 class RecipesButton extends StatelessWidget {
-  const RecipesButton({super.key, this.width, this.height, this.onTap});
+  const RecipesButton({
+    super.key,
+    this.width,
+    this.height,
+    this.onTap,
+    this.onOpen,
+    this.onClose,
+  });
 
   final double? width;
   final double? height;
   final VoidCallback? onTap;
+  final VoidCallback? onOpen;
+  final VoidCallback? onClose;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
+      onTap: () async {
         if (onTap != null) {
           onTap!();
           return;
         }
-        showRecipes(context);
+        onOpen?.call();
+        await showRecipes(context);
+        onClose?.call();
       },
       child: Image.asset(
         'assets/png/recipes.png',
@@ -29,8 +40,8 @@ class RecipesButton extends StatelessWidget {
     );
   }
 
-  void showRecipes(context) {
-    showDialog(
+  Future<void> showRecipes(context) async {
+    await showDialog(
       context: context,
       useSafeArea: false,
       barrierColor: Colors.black.withAlpha(16),

@@ -31,10 +31,7 @@ class GreenhouseController extends GetxController
 
   List<BedModel> get beds => _beds;
 
-  List<String> get ripedFlowers => _beds
-      .where((e) => e.flowerModel != null)
-      .map((e) => e.flowerModel!.flower.asset)
-      .toList();
+  List<String> get ripedFlowers => _rippedFlowers;
 
   Map<int, String> _bedsMap = {};
 
@@ -120,7 +117,7 @@ class GreenhouseController extends GetxController
       }
 
       final dateInMicroSeconds = int.tryParse(parts[0]) ?? 0;
-      final riped = parts[1] == '1';
+      final riped = parts[1] == '1' || dateInMicroSeconds == -1;
       final showedAnimation = parts[2] == '1';
 
       final date = DateTime.fromMicrosecondsSinceEpoch(dateInMicroSeconds);
@@ -163,6 +160,8 @@ class GreenhouseController extends GetxController
               false,
             );
 
+            _rippedFlowers.add(bedModel.flowerModel!.flower.asset);
+            await _appConfigRepository.setRippedFlowers(_rippedFlowers);
             update();
 
             bedModel.flowerModel!.controller?.forward().whenComplete(() async {
@@ -172,9 +171,6 @@ class GreenhouseController extends GetxController
                 true,
                 true,
               );
-
-              _rippedFlowers.add(bedModel.flowerModel!.flower.asset);
-              await _appConfigRepository.setRippedFlowers(_rippedFlowers);
 
               bedModel.timer = null;
               bedModel.flowerModel!.showedAnimation = true;
@@ -192,6 +188,11 @@ class GreenhouseController extends GetxController
           true,
           false,
         );
+
+        _rippedFlowers.add(bedModel.flowerModel!.flower.asset);
+        await _appConfigRepository.setRippedFlowers(_rippedFlowers);
+        update();
+
         bedModel.flowerModel!.controller?.forward().whenComplete(() async {
           _appConfigRepository.updateFlower(
             bedModel.flowerModel!.flower.asset,
@@ -199,9 +200,6 @@ class GreenhouseController extends GetxController
             true,
             true,
           );
-
-          _rippedFlowers.add(bedModel.flowerModel!.flower.asset);
-          await _appConfigRepository.setRippedFlowers(_rippedFlowers);
 
           bedModel.timer = null;
           bedModel.flowerModel!.showedAnimation = true;

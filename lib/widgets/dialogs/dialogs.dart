@@ -2,6 +2,7 @@ export 'main_game_info_dialog.dart';
 export 'crystal_dialog.dart';
 export 'potion_maker_info_dialog.dart';
 export 'training_dialog.dart';
+export 'leave_dialog.dart';
 export 'potion_maker_result_dialog.dart';
 export 'coins_shop_dialog.dart';
 export 'wheel_result_dialog.dart';

@@ -12,11 +12,13 @@ class LabeledButton extends StatelessWidget {
     this.textStyle,
     this.width,
     this.height,
+    this.strokeColor,
   });
 
   final double? width;
   final double? height;
   final String label;
+  final Color? strokeColor;
   final VoidCallback? onTap;
   final TextStyle? textStyle;
 
@@ -37,7 +39,7 @@ class LabeledButton extends StatelessWidget {
             text: label,
             strokeWidth: 1.9.sp,
             textStyle: textStyle ?? AppTextStyles.ls24.copyWith(fontSize: 24.r),
-            strokeColor: AppTheme.darkOrange1,
+            strokeColor: strokeColor ?? AppTheme.darkOrange1,
           ),
         ],
       ),

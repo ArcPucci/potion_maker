@@ -110,7 +110,13 @@ class AppConfigRepository {
   }
 
   List<String> getAvailableRecipes() {
-    return _preferences.getStringList(_availableRecipesKey) ?? [];
+    return _preferences.getStringList(_availableRecipesKey) ??
+        [
+          'assets/png/potions/root_of_luck.png',
+          'assets/png/potions/petal_brew.png',
+          'assets/png/potions/mist_drop.png',
+          'assets/png/potions/forest_dust.png',
+        ];
   }
 
   Future<void> setBedsConfig(Map<int, String> bedsConfig) async {
@@ -164,6 +170,6 @@ class AppConfigRepository {
   }
 
   String getFlowerInfo(String asset) {
-    return _preferences.getString(asset) ?? "-1,1,0";
+    return _preferences.getString(asset) ?? "-1,0,0";
   }
 }

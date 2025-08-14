@@ -2,8 +2,6 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:potion_maker/controllers/controllers.dart';
 
 import '../../utils/utils.dart';
 import '../widgets.dart';
@@ -76,6 +74,16 @@ class _TrainingDialogState extends State<TrainingDialog> {
       children: [
         Positioned.fill(
           child: Image.asset('assets/png/training2.png', fit: BoxFit.cover),
+        ),
+        Positioned(
+          top: 145.r,
+          left: 45.w,
+          child: Image.asset(
+            'assets/png/recipe_info.png',
+            width: 85.r,
+            height: 85.r,
+            fit: BoxFit.fill,
+          ),
         ),
         Positioned(
           top: 56.h,

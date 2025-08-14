@@ -9,6 +9,8 @@ import 'package:potion_maker/game_application.dart';
 import 'package:potion_maker/repositories/repositories.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'backend_integration.dart';
+
 void main() {
   runZonedGuarded(
     () async {
@@ -18,6 +20,8 @@ void main() {
         DeviceOrientation.landscapeLeft,
         DeviceOrientation.landscapeRight,
       ]);
+
+      // await initBackend();
 
       final preferences = await SharedPreferences.getInstance();
       final appConfigRepository = AppConfigRepository(preferences);

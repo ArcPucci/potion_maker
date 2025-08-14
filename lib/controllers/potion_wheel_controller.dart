@@ -128,17 +128,22 @@ class PotionWheelController extends GetxController
     currentBet.value = (coins ~/ _step) * _step;
   }
 
+  void pauseSpin() {
+    if (_animationController.isAnimating) {
+      _animationController.stop();
+    }
+  }
 
+  void resumeSpin() {
+    if (!_animationController.isAnimating &&
+        _animationController.value < 1.0) {
+      _animationController.forward();
+    }
+  }
 
   @override
   void dispose() {
     _animationController.dispose();
     super.dispose();
-  }
-
-  @override
-  void onClose() {
-    _animationController.dispose();
-    super.onClose();
   }
 }

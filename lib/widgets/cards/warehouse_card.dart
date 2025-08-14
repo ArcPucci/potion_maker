@@ -38,7 +38,7 @@ class WarehouseCard extends StatelessWidget {
               index,
             ) {
               final flower = GreenhouseRepository.warehouse[index];
-              final isBought = controller.availableFlowers.contains(
+              final isBought = controller.ripedFlowers.contains(
                 flower.asset,
               );
               final bedModel = controller.beds.firstWhereOrNull(
