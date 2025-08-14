@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide CloseButton;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:potion_maker/widgets/widgets.dart';
@@ -85,15 +85,7 @@ class BedShopDialog extends StatelessWidget {
                 ),
                 Align(
                   alignment: Alignment.topRight,
-                  child: GestureDetector(
-                    onTap: Navigator.of(context).pop,
-                    child: Image.asset(
-                      'assets/png/close.png',
-                      width: 43.r,
-                      height: 43.r,
-                      fit: BoxFit.fill,
-                    ),
-                  ),
+                  child: CustomCloseButton(onTap: Navigator.of(context).pop),
                 ),
               ],
             ),

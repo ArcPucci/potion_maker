@@ -8,6 +8,7 @@ import 'package:potion_maker/models/models.dart';
 import 'package:potion_maker/widgets/custom_bordered_text.dart';
 
 import '../../utils/utils.dart';
+import '../buttons/buttons.dart';
 
 class RecipeDialog extends StatefulWidget {
   const RecipeDialog({super.key, required this.potion});
@@ -142,15 +143,7 @@ class _RecipeDialogState extends State<RecipeDialog> {
                 Positioned(
                   top: 6.r,
                   right: 6.r,
-                  child: GestureDetector(
-                    onTap: Navigator.of(context).pop,
-                    child: Image.asset(
-                      'assets/png/close.png',
-                      width: 43.r,
-                      height: 43.r,
-                      fit: BoxFit.fill,
-                    ),
-                  ),
+                  child: CustomCloseButton(onTap: Navigator.of(context).pop),
                 ),
               ],
             ),

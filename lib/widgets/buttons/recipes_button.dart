@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
+import '../../controllers/controllers.dart';
 import '../dialogs/dialogs.dart';
 
 class RecipesButton extends StatelessWidget {
@@ -21,8 +23,10 @@ class RecipesButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<AppConfigController>();
     return GestureDetector(
       onTap: () async {
+        controller.playSound();
         if (onTap != null) {
           onTap!();
           return;

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../utils/utils.dart';
+import '../buttons/buttons.dart';
 
 class GreenhouseInfoDialog extends StatefulWidget {
   const GreenhouseInfoDialog({super.key});
@@ -226,15 +227,7 @@ class _GreenhouseInfoDialogState extends State<GreenhouseInfoDialog> {
                       ],
                     ),
                   ),
-                  GestureDetector(
-                    onTap: Navigator.of(context).pop,
-                    child: Image.asset(
-                      'assets/png/close.png',
-                      width: 43.r,
-                      height: 43.r,
-                      fit: BoxFit.fill,
-                    ),
-                  ),
+                  CustomCloseButton(onTap: Navigator.of(context).pop),
                 ],
               ),
             ),

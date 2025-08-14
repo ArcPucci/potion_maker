@@ -12,6 +12,7 @@ class AppConfigController extends GetxController {
   }
 
   final AudioPlayer _player = AudioPlayer();
+  final AudioPlayer _player2 = AudioPlayer();
 
   RxBool musicValue = true.obs;
   RxBool soundValue = true.obs;
@@ -26,6 +27,9 @@ class AppConfigController extends GetxController {
   bool get welcome => _appConfigRepository.getWelcome();
 
   void initController() async {
+    await _player.setAsset('assets/audio/magic.mp3');
+    await _player2.setAsset('assets/audio/click.mp3');
+
     musicValue.value = _appConfigRepository.getMusic();
     soundValue.value = _appConfigRepository.getSound();
     coins.value = _appConfigRepository.getCoins();
@@ -42,6 +46,7 @@ class AppConfigController extends GetxController {
   void toggleSound(bool value) async {
     soundValue.value = value;
     await _appConfigRepository.setSound(value);
+    playSound();
   }
 
   void addCoins(int value) async {
@@ -67,9 +72,19 @@ class AppConfigController extends GetxController {
 
   Future<void> _playMusic() async {
     try {
-      await _player.setAsset('assets/audio/magic.mp3');
       await _player.play();
       _player.setLoopMode(LoopMode.all);
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  void playSound() async {
+    try {
+      if (soundValue.value) {
+        _player2.seek(Duration.zero);
+        _player2.play();
+      }
     } catch (e) {
       print(e);
     }

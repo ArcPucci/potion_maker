@@ -44,10 +44,7 @@ class MenuDialog extends StatelessWidget {
                           child: ShaderMask(
                             shaderCallback: (Rect bounds) {
                               return LinearGradient(
-                                colors: [
-                                  Color(0xFF01C23B),
-                                  Color(0xFF00571D),
-                                ],
+                                colors: [Color(0xFF01C23B), Color(0xFF00571D)],
                                 begin: Alignment.topCenter,
                                 end: Alignment.bottomCenter,
                               ).createShader(bounds);
@@ -104,14 +101,8 @@ class MenuDialog extends StatelessWidget {
                     ),
                     Align(
                       alignment: Alignment.topRight,
-                      child: GestureDetector(
+                      child: CustomCloseButton(
                         onTap: Navigator.of(context).pop,
-                        child: Image.asset(
-                          'assets/png/close.png',
-                          width: 43.r,
-                          height: 43.r,
-                          fit: BoxFit.fill,
-                        ),
                       ),
                     ),
                   ],

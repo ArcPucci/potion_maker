@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:potion_maker/widgets/widgets.dart';
+
+import '../../controllers/controllers.dart';
 
 class MenuButton extends StatelessWidget {
   const MenuButton({super.key, this.onTap, this.onOpen, this.onClose});
@@ -10,9 +13,11 @@ class MenuButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<AppConfigController>();
     return LabeledButton2(
       label: "MENU",
       onTap: () async {
+        controller.playSound();
         if (onTap != null) {
           onTap?.call();
           return;

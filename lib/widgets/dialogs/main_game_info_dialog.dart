@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:potion_maker/utils/utils.dart';
 
+import '../buttons/buttons.dart';
+
 class MainGameInfoDialog extends StatefulWidget {
   const MainGameInfoDialog({super.key});
 
@@ -222,15 +224,7 @@ The more complex the recipe, the more valuable the potion. This means your rewar
                       ],
                     ),
                   ),
-                  GestureDetector(
-                    onTap: Navigator.of(context).pop,
-                    child: Image.asset(
-                      'assets/png/close.png',
-                      width: 43.r,
-                      height: 43.r,
-                      fit: BoxFit.fill,
-                    ),
-                  ),
+                  CustomCloseButton(onTap: Navigator.of(context).pop),
                 ],
               ),
             ),

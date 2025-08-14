@@ -158,15 +158,7 @@ class SeedsDialog extends StatelessWidget {
                       },
                     ),
                   ),
-                  GestureDetector(
-                    onTap: Navigator.of(context).pop,
-                    child: Image.asset(
-                      'assets/png/close.png',
-                      width: 43.r,
-                      height: 43.r,
-                      fit: BoxFit.fill,
-                    ),
-                  ),
+                  CustomCloseButton(onTap: Navigator.of(context).pop),
                 ],
               ),
             ),

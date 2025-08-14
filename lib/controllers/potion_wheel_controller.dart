@@ -55,6 +55,8 @@ class PotionWheelController extends GetxController
 
   bool get canSpin => currentBet.value > 0;
 
+  bool _paused = false;
+
   static const _step = 100;
 
   @override
@@ -131,13 +133,15 @@ class PotionWheelController extends GetxController
   void pauseSpin() {
     if (_animationController.isAnimating) {
       _animationController.stop();
+      _paused = true;
     }
   }
 
   void resumeSpin() {
-    if (!_animationController.isAnimating &&
-        _animationController.value < 1.0) {
+    if (!_paused) return;
+    if (!_animationController.isAnimating && _animationController.value < 1.0) {
       _animationController.forward();
+      _paused = false;
     }
   }
 

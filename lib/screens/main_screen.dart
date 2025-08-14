@@ -42,15 +42,7 @@ class MainScreen extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                GestureDetector(
-                  onTap: () => showInfoDialog(context),
-                  child: Image.asset(
-                    'assets/png/info.png',
-                    width: 60.r,
-                    height: 67.r,
-                    fit: BoxFit.fill,
-                  ),
-                ),
+                InfoButton(onTap: () => showInfoDialog(context)),
                 SizedBox(width: 12.w),
                 RecipesButton(width: 70.r, height: 71.r),
               ],
@@ -85,6 +77,7 @@ class MainScreen extends StatelessWidget {
                     child: LabeledButton(
                       label: 'LIBRARY',
                       textStyle: AppTextStyles.ls16.copyWith(fontSize: 16.r),
+                      onTap: () => Get.to(() => WheelGameScreen()),
                     ),
                   ),
                 ],

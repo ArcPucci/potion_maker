@@ -32,8 +32,8 @@ dependencies:
   get_storage:
   uuid:
   dio:
-#  firebase_core:
-#  flutter_dotenv:
+  firebase_core:
+  flutter_dotenv:
   flutter:
     sdk: flutter
 

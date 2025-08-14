@@ -108,14 +108,8 @@ class ShelfDialog extends StatelessWidget {
                     alignment: Alignment.topRight,
                     child: Padding(
                       padding: EdgeInsets.only(top: 6.h),
-                      child: GestureDetector(
+                      child: CustomCloseButton(
                         onTap: Navigator.of(context).pop,
-                        child: Image.asset(
-                          'assets/png/close.png',
-                          width: 43.r,
-                          height: 43.r,
-                          fit: BoxFit.fill,
-                        ),
                       ),
                     ),
                   ),

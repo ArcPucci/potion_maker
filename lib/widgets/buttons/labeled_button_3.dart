@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
+import '../../controllers/controllers.dart';
 import '../../utils/utils.dart';
 import '../widgets.dart';
 
@@ -12,8 +14,12 @@ class LabeledButton3 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<AppConfigController>();
     return GestureDetector(
-      onTap: onTap,
+      onTap: () {
+        controller.playSound();
+        onTap?.call();
+      },
       child: Stack(
         alignment: Alignment.center,
         children: [

@@ -115,14 +115,8 @@ class CrystalDialog extends StatelessWidget {
                       ),
                       Align(
                         alignment: Alignment.topRight,
-                        child: GestureDetector(
+                        child: CustomCloseButton(
                           onTap: Navigator.of(context).pop,
-                          child: Image.asset(
-                            'assets/png/close.png',
-                            width: 43.r,
-                            height: 43.r,
-                            fit: BoxFit.fill,
-                          ),
                         ),
                       ),
                     ],

@@ -26,6 +26,7 @@ class BudgetBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<AppConfigController>();
     return SizedBox(
       width: 130.r,
       height: 34.r,
@@ -89,6 +90,7 @@ class BudgetBox extends StatelessWidget {
               right: 0,
               child: GestureDetector(
                 onTap: () async {
+                  controller.playSound();
                   if (onTapPlus != null) {
                     onTapPlus?.call();
                     return;

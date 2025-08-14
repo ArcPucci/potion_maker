@@ -148,15 +148,7 @@ class _WheelGameScreenState extends State<WheelGameScreen> {
           Positioned(
             top: 19.h,
             left: 30.w,
-            child: GestureDetector(
-              onTap: Get.back,
-              child: Image.asset(
-                'assets/png/back.png',
-                width: 81.r,
-                height: 62.r,
-                fit: BoxFit.fill,
-              ),
-            ),
+            child: CustomBackButton(onTap: Get.back),
           ),
           Positioned(
             top: 16.h,
@@ -181,18 +173,12 @@ class _WheelGameScreenState extends State<WheelGameScreen> {
                     ),
                   ],
                 ),
-                GestureDetector(
+                InfoButton(
                   onTap: () async {
                     controller.pauseSpin();
                     await showInfoDialog();
                     controller.resumeSpin();
                   },
-                  child: Image.asset(
-                    'assets/png/info.png',
-                    width: 60.r,
-                    height: 67.r,
-                    fit: BoxFit.fill,
-                  ),
                 ),
               ],
             ),

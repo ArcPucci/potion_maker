@@ -102,7 +102,7 @@ class _PotionMakeScreenState extends State<PotionMakeScreen> {
                   left: 31.w,
                   child: Row(
                     children: [
-                      GestureDetector(
+                      CustomBackButton(
                         onTap: () async {
                           if (controller.status == GameStatus.idle) {
                             Get.back();
@@ -112,12 +112,6 @@ class _PotionMakeScreenState extends State<PotionMakeScreen> {
                           await showLeaveDialog();
                           controller.resumeGame();
                         },
-                        child: Image.asset(
-                          'assets/png/back.png',
-                          width: 81.r,
-                          height: 62.r,
-                          fit: BoxFit.fill,
-                        ),
                       ),
                       SizedBox(width: 13.r),
                       if (controller.showIngredients)
@@ -163,7 +157,7 @@ class _PotionMakeScreenState extends State<PotionMakeScreen> {
                           ),
                         ],
                       ),
-                      GestureDetector(
+                      InfoButton(
                         onTap: playing
                             ? () async {
                                 controller.pauseGame();
@@ -172,12 +166,6 @@ class _PotionMakeScreenState extends State<PotionMakeScreen> {
                                 }
                               }
                             : () => showInfoDialog(false),
-                        child: Image.asset(
-                          'assets/png/info.png',
-                          width: 60.r,
-                          height: 67.r,
-                          fit: BoxFit.fill,
-                        ),
                       ),
                     ],
                   ),

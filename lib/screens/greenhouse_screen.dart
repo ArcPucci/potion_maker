@@ -21,19 +21,7 @@ class GreenhouseScreen extends StatelessWidget {
             left: -2.w,
             child: Image.asset('assets/png/garden_bg.png', fit: BoxFit.fill),
           ),
-          Positioned(
-            top: 24.h,
-            left: 30.w,
-            child: GestureDetector(
-              onTap: Navigator.of(context).pop,
-              child: Image.asset(
-                'assets/png/back.png',
-                width: 81.r,
-                height: 62.r,
-                fit: BoxFit.fill,
-              ),
-            ),
-          ),
+          Positioned(top: 24.h, left: 30.w, child: CustomBackButton()),
           Positioned(
             top: 29.h,
             right: 20.w,
@@ -61,15 +49,7 @@ class GreenhouseScreen extends StatelessWidget {
                 children: [
                   Padding(
                     padding: EdgeInsets.only(bottom: 5.h),
-                    child: GestureDetector(
-                      onTap: () => showInfoDialog(context),
-                      child: Image.asset(
-                        'assets/png/info.png',
-                        width: 60.r,
-                        height: 67.r,
-                        fit: BoxFit.fill,
-                      ),
-                    ),
+                    child: InfoButton(onTap: () => showInfoDialog(context)),
                   ),
                   SizedBox(width: 11.w),
                   Column(
