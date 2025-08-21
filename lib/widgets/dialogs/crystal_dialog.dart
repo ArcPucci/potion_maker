@@ -98,6 +98,9 @@ class CrystalDialog extends StatelessWidget {
                                     : 0.5,
                                 child: LabeledButton(
                                   label: "BUY",
+                                  enabled:
+                                      controller.coins >=
+                                      crystalModel.crystal.price,
                                   onTap: () {
                                     if (controller.coins >=
                                         crystalModel.crystal.price) {

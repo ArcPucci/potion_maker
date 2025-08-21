@@ -59,7 +59,7 @@ class PotionMakerController extends GetxController {
 
   int _currentPotion = 0;
 
-  final List<bool?> _potionMade = [null, null, null, null];
+  List<bool?> _potionMade = [null, null, null, null];
 
   List<bool?> get potionMade => _potionMade;
 
@@ -93,8 +93,11 @@ class PotionMakerController extends GetxController {
     _generatePotions();
     _ingredients = [null, null, null, null];
     introTime.value = 3;
+    _hasDust = false;
+    _potionType = null;
     remaining.value = _initTime;
     _status = GameStatus.idle;
+    _potionMade = [null, null, null, null];
     update();
   }
 

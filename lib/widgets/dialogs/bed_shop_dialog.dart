@@ -74,6 +74,7 @@ class BedShopDialog extends StatelessWidget {
                         opacity: coins.value >= price ? 1 : 0.5,
                         child: LabeledButton(
                           label: "BUY",
+                          enabled: coins.value >= price,
                           onTap: () {
                             onBuy?.call();
                             Navigator.of(context).pop();

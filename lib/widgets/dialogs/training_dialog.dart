@@ -63,7 +63,11 @@ class _TrainingDialogState extends State<TrainingDialog> {
             child: _buildLetter('assets/png/letter1.png'),
           ),
         ),
-        Positioned(top: 54.h, right: 202.w, child: AnimatedPulsingCursor()),
+        Positioned(
+          top: 54.h,
+          right: 152.w,
+          child: SafeArea(child: AnimatedPulsingCursor()),
+        ),
       ],
     );
   }
@@ -90,7 +94,11 @@ class _TrainingDialogState extends State<TrainingDialog> {
           right: 52.w,
           child: _buildLetter('assets/png/letter2.png'),
         ),
-        Positioned(top: 130.h, left: 208.w, child: AnimatedPulsingCursor()),
+        Positioned(
+          top: 130.h,
+          left: 148.w,
+          child: SafeArea(child: AnimatedPulsingCursor()),
+        ),
       ],
     );
   }
@@ -107,7 +115,11 @@ class _TrainingDialogState extends State<TrainingDialog> {
           left: 22.w,
           child: _buildLetter('assets/png/letter3.png'),
         ),
-        Positioned(top: 70.h, right: 16.w, child: AnimatedPulsingCursor()),
+        Positioned(
+          top: 70.h,
+          right: -48.w,
+          child: SafeArea(child: AnimatedPulsingCursor()),
+        ),
       ],
     );
   }
@@ -120,7 +132,11 @@ class _TrainingDialogState extends State<TrainingDialog> {
           child: Image.asset('assets/png/training4.png', fit: BoxFit.cover),
         ),
         Positioned(top: 6.h, child: _buildLetter('assets/png/letter4.png')),
-        Positioned(top: 220.h, left: 147.w, child: AnimatedPulsingCursor()),
+        Positioned(
+          top: 220.h,
+          left: 97.w,
+          child: SafeArea(child: AnimatedPulsingCursor()),
+        ),
       ],
     );
   }

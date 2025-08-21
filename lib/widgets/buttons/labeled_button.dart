@@ -15,6 +15,7 @@ class LabeledButton extends StatelessWidget {
     this.width,
     this.height,
     this.strokeColor,
+    this.enabled = true,
   });
 
   final double? width;
@@ -23,12 +24,14 @@ class LabeledButton extends StatelessWidget {
   final Color? strokeColor;
   final VoidCallback? onTap;
   final TextStyle? textStyle;
+  final bool enabled;
 
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<AppConfigController>();
     return GestureDetector(
       onTap: () {
+        if (!enabled) return;
         controller.playSound();
         onTap?.call();
       },

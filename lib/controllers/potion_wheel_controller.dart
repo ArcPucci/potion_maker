@@ -49,7 +49,7 @@ class PotionWheelController extends GetxController
 
   RxInt currentBet = 0.obs;
 
-  bool get canIncrease => coins > currentBet.value;
+  bool get canIncrease => coins >= currentBet.value + _step;
 
   bool get canDecrease => currentBet.value > 0;
 
@@ -90,6 +90,7 @@ class PotionWheelController extends GetxController
   void spinWheel() {
     if (isSpinning.value) return;
     if (coins < currentBet.value) return;
+    if (!canSpin) return;
 
     isSpinning.value = true;
     selectedIndex.value = -1;

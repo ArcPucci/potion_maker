@@ -21,7 +21,7 @@ void main() {
         DeviceOrientation.landscapeRight,
       ]);
 
-      await initBackend();
+      // await initBackend();
 
       final preferences = await SharedPreferences.getInstance();
       final appConfigRepository = AppConfigRepository(preferences);

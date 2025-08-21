@@ -108,6 +108,7 @@ class _WheelGameScreenState extends State<WheelGameScreen> {
                           textStyle: AppTextStyles.ls17.copyWith(
                             fontSize: 17.r,
                           ),
+                          enabled: controller.canSpin,
                           onTap: controller.spinWheel,
                         ),
                       ),

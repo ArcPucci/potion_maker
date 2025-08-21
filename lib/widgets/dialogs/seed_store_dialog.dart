@@ -103,6 +103,7 @@ class SeedStoreDialog extends StatelessWidget {
                                                       Positioned(
                                                         right: 0,
                                                         child: LabeledButton(
+                                                          enabled: canBuy,
                                                           label: flower.price
                                                               .toString(),
                                                           width: 62.r,
@@ -114,8 +115,9 @@ class SeedStoreDialog extends StatelessWidget {
                                                                         14.r,
                                                                   ),
                                                           onTap: () {
-                                                            if (isBought)
+                                                            if (isBought) {
                                                               return;
+                                                            }
                                                             controller
                                                                 .buyFlower(
                                                                   flower,

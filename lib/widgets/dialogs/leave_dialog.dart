@@ -80,6 +80,7 @@ class LeaveDialog extends StatelessWidget {
                                     strokeColor: Colors.white,
                                     textStyle: AppTextStyles.ls24.copyWith(
                                       color: Color(0xFFFF0000),
+                                      fontSize: 24.r,
                                     ),
                                     onTap: () {
                                       Navigator.of(context).pop();
